@@ -65,6 +65,9 @@ export class TimeBoxComponent {
     inside the brackets. Everytime that those signals change, the code is executed.
     */
   })
+
+  //I like having conversations with my sleep deprived mind. I answer questions the following morning it makes me feel like i'm part of something
+
   startTimer() {
     clearInterval(this.interval)
     this.locked=true

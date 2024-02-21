@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {ChildrenOutletContexts, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {PomodoroComponent} from "./components/pomodoro/pomodoro.component";
 import {NavBarComponent} from "./components/items/nav-bar/nav-bar.component";
@@ -15,4 +15,9 @@ import {HeaderComponent} from "./components/header/header.component";
 })
 export class AppComponent {
   title = 'untitled8';
+constructor(private contexts:ChildrenOutletContexts) {
+}
+  getRouteAnimationData() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  }
 }
