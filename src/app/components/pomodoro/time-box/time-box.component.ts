@@ -20,8 +20,8 @@ import {ButtonComponent} from "../../items/button/button.component";
     <h1 *ngIf="timeEnded()"> Time's up!</h1>
     <div>
       <ul>
-        <li> <app-button type="funcBtn" (click)="startTimer()" tmpLbl="START"></app-button></li>
-        <li>  <app-button type="funcBtn" (click)="stopTimer()" tmpLbl="STOP"></app-button></li>
+        <li> <app-button [isGrey]="started()" id="_starter" type="funcBtn"  (click)="startTimer()" tmpLbl="START"></app-button></li>
+        <li>  <app-button [isGrey]="!started()" id="_stopper" type="funcBtn" (click)="stopTimer()" tmpLbl="STOP"></app-button></li>
       </ul>
 
 
@@ -67,8 +67,18 @@ export class TimeBoxComponent {
   })
 
   //I like having conversations with my sleep deprived mind. I answer questions the following morning it makes me feel like i'm part of something
+  started = signal(false);
 
+  /**
+   * Ooof, I have started() and timeLeft() AND timeEnded().
+   * Bloat on par with bonzi buddy
+   */
   startTimer() {
+    if (this.started()){
+      return
+    }
+
+    else this.started.set(true);
     clearInterval(this.interval)
     this.locked=true
     this.timeLeft.set(this.inputTime)
@@ -79,6 +89,10 @@ export class TimeBoxComponent {
     },1000)
   }
   stopTimer(){
+    if (this.started()){
+      this.started.set(false)
+    }
+    else return
     this.locked=false
     clearInterval(this.interval)
   }

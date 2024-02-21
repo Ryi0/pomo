@@ -1,7 +1,7 @@
 import {Component, computed, input, Input, signal} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {routes} from "../../../app.routes";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-button',
@@ -9,16 +9,17 @@ import {NgIf} from "@angular/common";
   imports: [
     RouterLink,
     RouterLinkActive,
-    NgIf
+    NgIf,
+    NgClass
   ],
   template: `<ng-template [ngIf]="isRouter()">
-    <div (click)="clickHandler()" class="btn" [routerLink]="'./'+btnRoute()"
+    <div (click)="clickHandler()" class="btn"  [routerLink]="'./'+btnRoute()"
          routerLinkActive="btnActive" ariaCurrentWhenActive="page">
       <h2>{{ tmpLbl() }}</h2>
     </div>
   </ng-template>
   <ng-template [ngIf]="!isRouter()">
-    <div (click)="clickHandler()" class="btn funkyButt" >
+    <div (click)="clickHandler()" class="btn funkyButt" [ngClass]="{'greyed': isGrey()}"  >
       <h2>{{tmpLbl()}}</h2>
     </div>
   </ng-template>
@@ -31,6 +32,7 @@ export class ButtonComponent {
     console.log(this.tmpLbl())
     console.log(this.btnRoute())
   }
+  isGrey = input<boolean>(true)
   isRouter = computed(()=>{
     return this.type()==="routingBtn";
   })
