@@ -4,12 +4,19 @@
 //$secondary: #212731;
 //$secondary2: #2f3136;
 //$accent: #ffd36b;
-$text: #101010;
-$background: #f9f9f9;
-$primary: #d3f2ff;
-$secondary: #1b2327;
+//$text: #101010;
+//$background: #f9f9f9;
+//$primary: #d3f2ff;
+//$secondary: #1b2327;
+//$secondary2:#1c2428;
+//$accent: #4330cf;
+$text: #eeeeee;
+$background: #292929;
+$primary: #1c1717;
+$secondary: #ffa768;
 $secondary2:#1c2428;
-$accent: #4330cf;
+$accent: #79ff8d;
+
 $linearPrimarySecondary: linear-gradient(#d1f1ff, #1b2327);
 $linearPrimaryAccent: linear-gradient(#d1f1ff, #4330cf);
 $linearSecondaryAccent: linear-gradient(#1b2327, #4330cf);
@@ -17,10 +24,15 @@ $radialPrimarySecondary: radial-gradient(#d1f1ff, #1b2327);
 $radialPrimaryAccent: radial-gradient(#d1f1ff, #4330cf);
 $radialSecondaryAccent: radial-gradient(#1b2327, #4330cf);
 
-$mainBG2: linear-gradient(to top, #757575 0%, #dadada 100%);
-$mainBG: linear-gradient(to top, #dfe9f3 0%, white 100%);; //background-image:
+$mainBG2: linear-gradient(to top, $secondary2 0%, $primary 100%);
+$mainBG: linear-gradient(to top, $primary 0%, $background 100%);; //background-image:
 $darkerBG: linear-gradient(to top, #09203f 0%, #537895 100%); //background-image:
 $gradient: linear-gradient(45deg, $accent, $primary);
+$gradient2: linear-gradient(45deg, $text, $primary);
+$gradient3: linear-gradient(45deg, $text, $accent);
+
+
+
 
 //$text: #212731;
 //$background: #f8fafc;

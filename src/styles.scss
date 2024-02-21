@@ -54,28 +54,25 @@ app-button{
   .btn{
   //box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.21);
     background-color: $accent;
-    border-image: $mainBG2;
-    border-image-slice: 15 5%;
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 0.1rem;
     user-select: none;
-    font-size: .75em;
+    font-size: 2em;
     position: relative;
     justify-content: center;
     display: flex;
     padding: 1.1em 1em;
     letter-spacing: 0.35rem;
     border: solid 4px transparent;
-    background-color: $accent;
-    border-image: $mainBG2;
+    border-image: $gradient2;
     border-image-slice: 15 5%;
     background: $gradient;
     -webkit-background-clip: text;
     background-clip: text;
-    color:$background;
+    color:$text;
 
     transition: 0.25s;
   }
@@ -89,29 +86,38 @@ app-button{
     background-image: $gradient;
 
     box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
-    border-image: $darkerBG;
+    border-image: $gradient3;
     border-image-slice: 15 5%;
     transition: 0.124s;
   }
   .btn:active{
-    color: $accent;
+    color: $primary;
     background: $gradient;
     -webkit-background-clip: text;
     background-clip: text;
     //transition-delay: 100ms;
-    transition: 0s;
+    scale: 102%;
+    transition: 0.1s 0s;
+    -webkit-text-fill-color: $primary;
+    -webkit-text-stroke-width: 0.15rem;
+    -webkit-text-stroke-color: $accent;
   }
   .btnActive{
     // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
-    border-image: $gradient;
-    border-image-slice: 15 5%;
     // background: $gradient;
     //background-color: $accent;
     //border-image: $mainBG2;
     //border-image-slice: 15 5%;
     // color:$background;
+    font-size: 2rem;
+    background-image: $gradient;
+    border-image: $gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    border-image-slice: 1;
     transition: 300ms;
-    color: transparent;
+
+
     // transition-delay: 100ms;
   } .btnActive:hover{
       // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
@@ -123,10 +129,11 @@ app-button{
       //border-image-slice: 15 5%;
       // color:$background;
       transition: 300ms;
-      color: $primary;
+      color: $accent;
       // transition-delay: 100ms;
     }
   .navButt{
+
 
   }
   .funkyButt{
@@ -136,7 +143,7 @@ app-button{
     font-weight: bold;
     border-radius: 0.1rem;
     user-select: none;
-    font-size: .75em;
+    font-size: 1.2em;
     position: relative;
     justify-content: center;
     display: flex;
@@ -144,33 +151,46 @@ app-button{
     letter-spacing: 0.35rem;
     border: solid 4px transparent;
   //  background-color: $accent;
-    border-image: $mainBG2;
+    border-image: $gradient;
     border-image-slice: 15 5%;
     background: $accent $mainBG2;
     //-webkit-background-clip: text;
    // background-clip: text;
-    color:$background;
+    background: $gradient;
 
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: $primary;
+    -webkit-text-stroke-width: 0.15rem;
+    -webkit-text-stroke-color: $accent;
     transition: 300ms 0ms;
+
   }
   .funkyButt:hover{
-    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
     background-image: $mainBG2;
-    border-image: $darkerBG;
-    border-image-slice: 10 5%;
+    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+
+    border-image: $gradient;
+    border-image-slice: 15 20% 15;
   //  color: $background;
-    -webkit-background-clip: border;
-    background-clip: border-box;
+
+    -webkit-background-clip: content;
+    background-clip: revert;
+
     transition: 100ms 0s;
   }
   .funkyButt:active{
     box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
-    background-image: $mainBG2;
+    background-image: $gradient;
     border-image: $mainBG2;
     border-image-slice: 10 5%;
     //  color: $background;
     -webkit-background-clip: border;
     background-clip: border-box;
+    -webkit-text-fill-color: $primary;
+    -webkit-text-stroke-width: 0.15rem;
+    -webkit-text-stroke-color: $primary;
     transition: 100ms;
 
   }
@@ -186,21 +206,25 @@ app-button{
 }
 
 input{
-
+  font-size: 1.5rem;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  color: $background;
-  background-color: $secondary;
+  color: $text;
+  background-color: $primary;
   border: 2px solid $accent;
   border-radius: 25px;
 }
 input:disabled{
   color: $text;
-  background-color: $secondary;
+  background-color: $background;
 }
 
-body{
+
+html{
   height: 100%;
+}
+body{
+  min-height: 99%;
   margin: 0;
   font-family: "Source Code Pro", sans-serif;
   font-weight: bold;
@@ -210,9 +234,6 @@ body{
 
   text-align: center;
   justify-content: center;
-}
-html{
-  height: 100%;
 }
 app-home{
   height: 50%;
