@@ -1,0 +1,245 @@
+/* You can add global styles to this file, and also import other style files */
+@use "variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+
+//.button {
+//  box-shadow: inset 0 1px 0 0 #ffffff;
+//  background: #ffffff linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+//  border-radius: 6px;
+//  border: 1px solid #dcdcdc;
+//  display: inline-block;
+//  cursor: pointer;
+//  color: #666666;
+//  font-family: Arial, sans-serif;
+//  font-size: 15px;
+//  font-weight: bold;
+//  padding: 6px 24px;
+//  text-decoration: none;
+//  text-shadow: 0 1px 0 #ffffff;
+//  outline: 0;
+//}
+//.activebutton {
+//  box-shadow: inset 0 1px 0 0 #dcecfb;
+//  background: #bddbfa linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+//  border: 1px solid #84bbf3;
+//  color: #ffffff;
+//  text-shadow: 0 1px 0 #528ecc;
+//}
+text{
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+h1{
+  font-family: "Code Light", serif;
+  letter-spacing: 0.2rem;
+}
+app-header{
+
+  header{
+    top: 0;
+    margin: 0;
+    background-color: $background;
+
+  }
+  hr{
+    border: 2px solid $redGrey;
+  }
+}
+app-button{
+
+  .btn{
+  //box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.21);
+    background-color: $accent;
+    border-image: $mainBG2;
+    border-image-slice: 15 5%;
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    border-radius: 0.1rem;
+    user-select: none;
+    font-size: .75em;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    padding: 1.1em 1em;
+    letter-spacing: 0.35rem;
+    border: solid 4px transparent;
+    background-color: $accent;
+    border-image: $mainBG2;
+    border-image-slice: 15 5%;
+    background: $gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color:$background;
+
+    transition: 0.25s;
+  }
+
+
+  .btn:hover{
+    user-select: none;
+    cursor: pointer;
+    //color: $background;
+    background-color: $background;
+    background-image: $gradient;
+
+    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+    border-image: $darkerBG;
+    border-image-slice: 15 5%;
+    transition: 0.124s;
+  }
+  .btn:active{
+    color: $accent;
+    background: $gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    //transition-delay: 100ms;
+    transition: 0s;
+  }
+  .btnActive{
+    // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
+    border-image: $gradient;
+    border-image-slice: 15 5%;
+    // background: $gradient;
+    //background-color: $accent;
+    //border-image: $mainBG2;
+    //border-image-slice: 15 5%;
+    // color:$background;
+    transition: 300ms;
+    color: transparent;
+    // transition-delay: 100ms;
+  } .btnActive:hover{
+      // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
+      border-image: $gradient;
+      border-image-slice: 15 5%;
+      // background: $gradient;
+      //background-color: $accent;
+      //border-image: $mainBG2;
+      //border-image-slice: 15 5%;
+      // color:$background;
+      transition: 300ms;
+      color: $primary;
+      // transition-delay: 100ms;
+    }
+  .navButt{
+
+  }
+  .funkyButt{
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    border-radius: 0.1rem;
+    user-select: none;
+    font-size: .75em;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    padding: 1.1em 1em;
+    letter-spacing: 0.35rem;
+    border: solid 4px transparent;
+  //  background-color: $accent;
+    border-image: $mainBG2;
+    border-image-slice: 15 5%;
+    background: $accent $mainBG2;
+    //-webkit-background-clip: text;
+   // background-clip: text;
+    color:$background;
+
+    transition: 300ms 0ms;
+  }
+  .funkyButt:hover{
+    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+    background-image: $mainBG2;
+    border-image: $darkerBG;
+    border-image-slice: 10 5%;
+  //  color: $background;
+    -webkit-background-clip: border;
+    background-clip: border-box;
+    transition: 100ms 0s;
+  }
+  .funkyButt:active{
+    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+    background-image: $mainBG2;
+    border-image: $mainBG2;
+    border-image-slice: 10 5%;
+    //  color: $background;
+    -webkit-background-clip: border;
+    background-clip: border-box;
+    transition: 100ms;
+
+  }
+  .btn-grad {
+
+  }
+
+  .btn-grad:hover {
+    //background-position: right center; /* change the direction of the change here */
+    //color: #fff;
+    //text-decoration: none;
+  }
+}
+
+input{
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: $background;
+  background-color: $secondary;
+  border: 2px solid $accent;
+  border-radius: 25px;
+}
+input:disabled{
+  color: $text;
+  background-color: $secondary;
+}
+
+body{
+  height: 100%;
+  margin: 0;
+  font-family: "Source Code Pro", sans-serif;
+  font-weight: bold;
+  color: $text;
+  background-image: $mainBG;
+  background-repeat: no-repeat;
+
+  text-align: center;
+  justify-content: center;
+}
+html{
+  height: 100%;
+}
+app-home{
+  height: 50%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+app-time-box{
+
+}
+app-pomodoro{
+  display: flex;
+  justify-content: center;
+
+}
+.container{
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: $blueGrey;
+  text-align: center;
+  padding: 15px;
+  width: fit-content;
+  border-radius: 1rem;
+  background-color: $primary;
+  //border: 5px solid $accent;
+}

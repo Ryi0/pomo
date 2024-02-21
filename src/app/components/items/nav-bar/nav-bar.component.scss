@@ -1,0 +1,40 @@
+//@import "src/styles.scss";
+@use "../../../../variables" as vars;
+nav{
+ // padding: 0;
+ // top: 0;
+ // display: flex;
+ // justify-content: center;
+ // position: relative;
+ // //border-bottom: 5px solid vars.$accent;
+ // background-color: vars.$primary;
+ //// margin: 1rem 4rem;
+ // margin: 0;
+
+}
+li{
+  //background-color: inherit;
+  //float: left;
+  //transition: 0.5s;
+
+  margin: 0 0.1rem;
+  width: 100%;
+ // overflow: hidden;
+}
+li:hover{
+  //transition: 0.5s;
+  //background-color: vars.$background;
+}
+ul {
+
+  border-radius: .5rem;
+  padding: 0.2rem;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: vars.$secondary;
+  // margin: 1rem 4rem;
+  margin: .4rem;
+  list-style-type: none;
+}
