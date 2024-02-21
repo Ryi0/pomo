@@ -13,11 +13,14 @@ import {ButtonComponent} from "../../items/button/button.component";
     ButtonComponent
   ],
   template: `
-    Time : <input type="text" [(ngModel)]="inputTime" [disabled]="locked">
+    <div class="text">
+      <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
+
     <p>
       {{ timeLeft() }}
     </p>
     <h1 *ngIf="timeEnded()"> Time's up!</h1>
+    </div>
     <div>
       <ul>
         <li> <app-button [isGrey]="started()" id="_starter" type="funcBtn"  (click)="startTimer()" tmpLbl="START"></app-button></li>
@@ -54,7 +57,7 @@ import {ButtonComponent} from "../../items/button/button.component";
 export class TimeBoxComponent {
   locked = false;
   interval:any;
-  inputTime = 0;
+  inputTime = 10;
   timeLeft = signal(0);
   timeEnded = computed(()=> this.timeLeft() <= 0);
   _thisActuallyMagicFrFr = effect(() => {
