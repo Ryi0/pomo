@@ -11,8 +11,42 @@
   background-size: cover;
 }
 
+.smallContainerPrim{
+  background-color: $primary;
+  color: $text;
+  width: 100%;
+  font-size: 3rem;
+
+}
+
+.flip{
+  transform: rotate(180deg);
+}
+.spacer1{
+  aspect-ratio: 960/540;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.pyramidGreen{
+  background-image: url("./background.svg");
+
+}
+
 .layer1{
-background-image: url("./background.svg");
+  background-image: url("./layer1.svg");
+  aspect-ratio: auto;
+}
+
+.layer2{
+  background-image: url("./layer2.svg");
+}
+.layer3{
+  background-image: url("./layer3.svg");
+}
+.layer4{
+  background-image: url("./layer4.svg");
 }
 
 //.button {
@@ -275,26 +309,26 @@ input:disabled:hover{
 html{
   //background-color: $background;
   //background-blend-mode: color-dodge;
-  height: 100%;
+  min-height: 100%;
   aspect-ratio: 1920/1080;
-  width: 100%;
-
-  background-image: url("./background.svg");
+  width: 100vw;
+  font-size: 1.2rem;
+  //background-image: url("./background.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 body{
-  //background-color: $primary;
+ // background-color: rgba(0, 0, 0, 0.42);
   //mix-blend-mode:overlay;
   min-height: 99%;
   margin: 0;
+  width: 100vw;
   font-family: "Source Code Pro", sans-serif;
   font-weight: bold;
   color: $text;
-  //background-image: $mainBG;
-  background-repeat: no-repeat;
-
+  //background-color: $background;
+  background: $mainBG fixed;
   text-align: center;
   justify-content: center;
 }
@@ -306,6 +340,20 @@ app-home{
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
+  //font-size: 2rem;
+  width: 100vw;
+  section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px;
+    padding: 100px 20vw;
+
+  }
+.scale50{
+  scale: 50%;
+}
 }
 app-time-box{
 
@@ -315,28 +363,52 @@ app-pomodoro{
   justify-content: center;
 
 }
-.container{
-  .contBg{
 
-  }
+
+.mainCont{
+  background-image: $mainBG ;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+  text-align: center;
+  padding: 0.5rem;
+  opacity: 100%;
+  mix-blend-mode: lighten;
+}
+.contBg{
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+  //background-color: $primary;
+  background-image: $mainBG ;
+ //background-blend-mode: multiply;
+  mix-blend-mode: lighten;
+  text-align: center;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  opacity: 100%;
+  // background-clip: text;
+}
+.container{
   font-family: "Source Code Pro", monospace;
   font-optical-sizing: auto;
   font-style: normal;
-  color: $text;
-  text-align: center;
+  //color: $text;
+  border-radius: 1rem;
   padding: 15px;
   width: fit-content;
-  border-radius: 1rem;
-  background-color: $primary;
-  background-image: $mainBG;
-  mix-blend-mode: darken;
-  //background-blend-mode: hue;
-  //border: 5px solid $accent;
-  opacity: 100%;
-  .text{
-   // background-color: #4330cf;
-  //  background-image: $mainBG2;
-    color: $secondary;
-  }
-}
+  //background-color: $primary;
+  //background-image: $gradient2;
+  //mix-blend-mode: lighten;
+  background-clip: text;
 
+  // background-color: $primary;
+
+
+  //background-image: $mainBG;
+  // mix-blend-mode: darken;
+  //background-blend-mode: hue;
+
+}

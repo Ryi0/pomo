@@ -13,20 +13,20 @@ import {ButtonComponent} from "../../items/button/button.component";
     ButtonComponent
   ],
   template: `
-    <div class="text">
+
       <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
 
     <p>
       {{ timeLeft() }}
     </p>
-    <h1 *ngIf="timeEnded()"> Time's up!</h1>
-    </div>
+
+
     <div>
       <ul>
         <li> <app-button [isGrey]="started()" id="_starter" type="funcBtn"  (click)="startTimer()" tmpLbl="START"></app-button></li>
         <li>  <app-button [isGrey]="!started()" id="_stopper" type="funcBtn" (click)="stopTimer()" tmpLbl="STOP"></app-button></li>
       </ul>
-
+      <h1 *ngIf="timeEnded()"> Time's up!</h1>
 
     </div>
   `,
