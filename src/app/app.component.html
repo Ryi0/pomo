@@ -1,4 +1,6 @@
-<app-header></app-header>
 
+<app-header></app-header>
+<app-timer [timeIN]="TimeSInkService.getCurrentTime()"></app-timer>
+<button (click)="seeMainTS()">TEST LOL</button>
 <router-outlet />
 

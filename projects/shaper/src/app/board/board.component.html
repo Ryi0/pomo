@@ -1,0 +1,26 @@
+<!--<h1 [innerText]="selectedSquares()"></h1>-->
+<!--<h1 [innerHTML]="result()"></h1>-->
+<!--<h2 [innerHTML]= "'Player one :' +gameService.playerOneScore()"></h2>-->
+<!--<h2 [innerHTML]= "'Player two :' +gameService.playerTwoScore()"></h2>-->
+<!--<h2 [innerHTML]= "'Total found :' +gameService.totalUncoveredTiles()"></h2>-->
+<!--<h3 [innerHTML]="'game Paused : '+ !gameStarted"></h3>-->
+<!--<div *ngIf="gameService.playerOneToPlay.valueOf() then thenBlock else elseBlock"></div>-->
+<!--<div class="">-->
+<!--<ng-template #thenBlock>Player One to play</ng-template>-->
+<!--<ng-template #elseBlock>Player Two to play</ng-template>-->
+<!--</div>-->
+
+  <div class="grid-container" >
+    <ng-container  *ngFor="let tile of allTheTiles">
+<app-square
+  (click)="clickHandler(tile.uniqueId)"
+  [cardContent]="tile.toString()"
+  [id]="tile.uniqueId"
+  [squareUniqueId]="tile.uniqueId"
+  [isSelected]="tile.selectedProp"
+  [isHidden]="tile.hidden"
+  [altHover]="gameService.playerOneToPlay"
+  [paused]="!gameStarted"
+></app-square>
+    </ng-container>
+  </div>

@@ -1,0 +1,22 @@
+
+<div class="container">
+<div class="menuContainer">
+  <div class="topMenu">
+    <ul>
+      <li class="p1" [innerHTML]= " p1Count()"></li>
+      <li class="tile" (click)="startGame()">Start</li>
+      <li class="tile" (click)="stopGame()">Stop</li>
+      <li class="p2" [innerHTML]=" p2Count()"></li>
+    </ul>
+  </div>
+</div>
+<div class="myHome" [ngStyle]="blendMode">
+
+  <app-board (sentMessageP1)="receiveDataP1($event)"
+             (sentMessageP2)="receiveDataP2($event)"
+             [gameStarted]="gameStarted()"
+  ></app-board>
+</div>
+</div>
+<!--  (player1)="playerTwoScore"-->
+<!--  (player2)="playerTwoScore"-->

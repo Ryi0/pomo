@@ -3,6 +3,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
+app-timer{
+  header{
+    background-color: $primary;
+    transition: 1s;
+    height: 5vw;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    transition: 1s;
+
+  }
+}
+.sticky {
+  top:-15rem;
+  margin-top: 15rem;
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  transition: margin-top 1s;
+}
+.notSticky{
+ // margin-top: 4rem;
+  top: -15rem;
+  transition: 1s;
+  position: fixed;
+  z-index: 11;
+  width: 100%;
+}
+
 .spacer{
   aspect-ratio: 1920/1080;
   width: 100%;
@@ -36,7 +66,7 @@
 
 .layer1{
   background-image: url("./layer1.svg");
-  aspect-ratio: auto;
+
 }
 
 .layer2{
@@ -339,7 +369,7 @@ app-home{
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   //font-size: 2rem;
   width: 100vw;
   section{

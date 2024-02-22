@@ -3,6 +3,7 @@ import {interval} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {ButtonComponent} from "../../items/button/button.component";
+import {TimeSInkService} from "../../../time-sink.service";
 
 @Component({
   selector: 'app-time-box',
@@ -62,7 +63,8 @@ export class TimeBoxComponent {
   timeEnded = computed(()=> this.timeLeft() <= 0);
   _thisActuallyMagicFrFr = effect(() => {
     console.log(this.timeLeft())
-    console.log("LOL THIS IS NOT CALLED HOW DOES IT WORK???")
+    TimeSInkService.setCurrentTime(this.timeLeft());
+    // console.log("LOL THIS IS NOT CALLED HOW DOES IT WORK???")
     /*
     Actually pretty simple. It runs once when the component is initialized. It then tracks any signal calls
     inside the brackets. Everytime that those signals change, the code is executed.
@@ -76,6 +78,8 @@ export class TimeBoxComponent {
    * Ooof, I have started() and timeLeft() AND timeEnded().
    * Bloat on par with bonzi buddy
    */
+
+
   startTimer() {
     if (this.started()){
       return
@@ -85,11 +89,21 @@ export class TimeBoxComponent {
     clearInterval(this.interval)
     this.locked=true
     this.timeLeft.set(this.inputTime)
+    //this.ts.setTimeLeft(this.timeLeft());
     this.interval = setInterval(() => {
       if (this.timeEnded()){
+
         this.stopTimer();
-      }else this.timeLeft.update(value => value-1)
+      }else {
+
+        console.log("AA")
+        this.timeLeft.update(value => value - 1)
+        TimeSInkService.setCurrentTime(this.timeLeft())
+        console.log(TimeSInkService.getCurrentTime())
+        //this.ts.setTimeLeft(this.timeLeft());
+      }
     },1000)
+    TimeSInkService.setInterval(this.interval);
   }
   stopTimer(){
     if (this.started()){
