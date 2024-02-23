@@ -19,6 +19,12 @@ export class GameService {
     }
     else this._playerTwoScore.update(value => value+=1);
   }
+  // player1Won = computed(() => {
+  //   if (this._playerOneScore()+this._playerTwoScore()>4){
+  //     return this._playerOneScore()>this._playerTwoScore();
+  //   }
+  //   return
+  // })
 
 private  _playerTwoScore = signal<number>(0);
 private  _playerOneScore = signal<number>(0);

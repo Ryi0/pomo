@@ -10,13 +10,13 @@ main {
 
 }
 .grid-container{
-
   align-items: center;
   align-content: center;
   display: grid;
   grid-template-columns: $size $size $size;
   grid-gap: 10px;
-
+  width: fit-content;
+  margin: auto;
 }
 
 app-square{

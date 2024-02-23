@@ -18,6 +18,10 @@ $secondary2:#1c2428;
 $accent: #79FF8D;
 $bleu:#1b2327;
 
+
+$baseInShadow : inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0,0,0,0.19);
+$baseOutShadow : 0 12px 32px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 $wave1: #79FF8D;
 $wave2:#FFD079;
 $wave3:#FF79EB;
@@ -37,6 +41,16 @@ $gradient: linear-gradient(45deg, $accent, $primary);
 $gradient2: linear-gradient(45deg, $text, $primary);
 $gradient3: linear-gradient(45deg, $text, $accent);
 
+$p1Grad : linear-gradient($background, $background) padding-box,
+linear-gradient(to right, $wave2, 70%,  $accent) border-box;
+
+$middleGrad : linear-gradient($background, $background) padding-box,
+linear-gradient(90deg, $secondary2 0%, $accent 50%, $secondary2 100%) border-box ;
+//linear-gradient(90deg, $secondary2 0%, $wave2 40%, $accent 50%, $wave3 60%, $secondary2 100%) border-box ;
+$p2Grad : linear-gradient($background, $background) padding-box,
+linear-gradient(to right, $accent, 30%, $wave3) border-box;
+
+$transp: rgba(13, 13, 150, 0);
 
 
 

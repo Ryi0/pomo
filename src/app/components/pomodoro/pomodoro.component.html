@@ -1,11 +1,14 @@
+
 <div class="pyramidGreen spacer">
-<div class="contBg">
-<div class="container">
+  <div class="container"></div>
+  <div class="contBg">
 
-<app-time-box></app-time-box>
-</div>
-
-</div>
+    <div class="container">
+      <app-button (click)="changeMode()" type="funcBtn" tmpLbl="Change mode"></app-button>
+      <app-time-box [mode]="modePom"></app-time-box>
+    </div>
+  <h1>Mode : {{modePom}}</h1>
+  </div>
 
 </div>
 <section></section>

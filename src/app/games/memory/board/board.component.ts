@@ -1,14 +1,20 @@
 import {Component, computed, effect, EventEmitter, inject, Input, OnInit, Output, signal} from '@angular/core';
 import {SquareComponent} from "../square/square.component";
-import {GameTile} from "../../../../../src/app/games/memory/app/game-tile";
-import {GameService} from "../../../../../src/app/games/memory/app/game.service";
+import {GameTile} from "../game-tile";
+import {GameService} from "../game.service";
 import GenerateCommandModule from "@angular/cli/src/commands/generate/cli";
 import {update} from "@angular-devkit/build-angular/src/tools/esbuild/angular/compilation/parallel-worker";
 import * as timers from "timers";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
+  standalone: true,
+  imports: [
+    SquareComponent,
+    NgForOf
+  ],
   styleUrl: './board.component.scss'
 })
 export class BoardComponent implements OnInit{
@@ -34,8 +40,8 @@ if(this.onFroze)
       //this.onFroze = true;
     }
 }
-
-  allTilesUncovered = computed(()=> {
+  @Input() gameStartedSignalId:any;
+ @Output() allTilesUncovered = computed(()=> {
     return this.gameService.totalUncoveredTiles() > 5
   })
   selectedSquares = signal<GameTile[]>([]);
@@ -63,6 +69,7 @@ if(this.onFroze)
       })
       if (this.allTilesUncovered()){
         setTimeout(()=>{
+          this.gameStartedSignalId.set(false);
           this.gameStarted=false;
         },1000)
       }

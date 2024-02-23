@@ -1,9 +1,15 @@
 import {Component, effect, Input, signal, ViewChild} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
-import {GameService} from "../../../../../src/app/games/memory/app/game.service";
+import {GameService} from "../game.service";
+import {NgStyle} from "@angular/common";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
+  standalone: true,
+  imports: [
+    NgStyle,
+    BoardComponent
+  ],
   styleUrl: './game.component.scss'
 })
 export class GameComponent {

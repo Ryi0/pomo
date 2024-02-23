@@ -1,0 +1,28 @@
+p{
+  margin: 0;
+  padding: 2rem;
+}
+h1{
+  padding: 2rem;
+  margin: 0;
+}
+h2{
+  padding: 2rem;
+  margin: 0;
+}
+.shaperCont{
+  display: flex;
+
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  //color: $text;
+  border-radius: 1rem;
+  padding: 15px;
+
+  //background-color: $primary;
+  //background-image: $gradient2;
+  //mix-blend-mode: lighten;
+  background-clip: text;
+}

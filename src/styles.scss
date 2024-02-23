@@ -3,6 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
+@mixin transition($properties, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+  -webkit-transition: $properties $duration $timing-function $delay;
+}
+@mixin changeAccent($new-color) {
+  $accent: $new-color !global;
+}
+@mixin changeBG($new-color) {
+  background-color: $new-color;
+}
+
 app-timer{
   header{
     background-color: $primary;
@@ -46,7 +56,7 @@ app-timer{
   color: $text;
   width: 100%;
   font-size: 3rem;
-
+  margin: 0;
 }
 
 .flip{
@@ -55,9 +65,16 @@ app-timer{
 .spacer1{
   aspect-ratio: 960/540;
   width: 100%;
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  //background-color: $accent;
+  //@include changeAccent(#e74c3c);
+  //@include transition(all, 0.3s);
+}
+.spacer1:hover{
+  //@include changeAccent($secondary)
 }
 .pyramidGreen{
   background-image: url("./background.svg");
@@ -134,7 +151,7 @@ app-button{
     font-weight: normal;
     border-radius: 0.1rem;
     user-select: none;
-    font-size: 2em;
+    font-size: 1em;
     position: relative;
     justify-content: center;
     display: flex;
@@ -183,7 +200,7 @@ app-button{
     //border-image: $mainBG2;
     //border-image-slice: 15 5%;
     // color:$background;
-    font-size: 2rem;
+    font-size: 1em;
     background-image: $gradient;
     border-image: $gradient;
     -webkit-background-clip: text;
@@ -337,6 +354,35 @@ input:disabled:hover{
 }
 
 html{
+  ::-webkit-scrollbar {
+    width: 1.2vw;
+  }
+
+  ::-webkit-scrollbar-track {
+    width: 1.2vw;
+    background: $mainBG;
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+
+
+    background:$gradient2;
+    border: .3ch solid transparent;
+    background-clip: content-box;
+    border-radius: 1em;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background:$gradient;
+    border:  .3ch solid transparent;
+    background-clip: content-box;
+    border-radius: 1em;
+
+    //@include transition(all, 0.3s);
+  }
+
+  //scrollbar-color: $accent $primary;
   //background-color: $background;
   //background-blend-mode: color-dodge;
   min-height: 100%;
@@ -349,6 +395,7 @@ html{
   background-size: cover;
 }
 body{
+  overflow-x: hidden;
  // background-color: rgba(0, 0, 0, 0.42);
   //mix-blend-mode:overlay;
   min-height: 99%;
@@ -361,6 +408,17 @@ body{
   background: $mainBG fixed;
   text-align: center;
   justify-content: center;
+}
+app-shaper{
+  height: 50%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: nowrap;
+  //font-size: 2rem;
+  width: 100vw;
 }
 app-home{
   height: 50%;
@@ -379,6 +437,9 @@ app-home{
     align-items: center;
     min-height: 100px;
     padding: 100px 20vw;
+
+  }
+  section:hover{
 
   }
 .scale50{

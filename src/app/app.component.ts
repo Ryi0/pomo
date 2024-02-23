@@ -8,17 +8,18 @@ import {HeaderComponent} from "./components/header/header.component";
 import {TimerComponent} from "./components/timer/timer.component";
 import {NgClass} from "@angular/common";
 import {TimeSInkService} from "./time-sink.service";
-
+import {MemoryComponent} from "./games/memory/memory.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, PomodoroComponent, NavBarComponent, RouterLink, RouterLinkActive, ButtonComponent, HeaderComponent, TimerComponent, NgClass],
+  imports: [RouterOutlet, HomeComponent, PomodoroComponent, NavBarComponent, RouterLink, RouterLinkActive, ButtonComponent, HeaderComponent, TimerComponent, NgClass, MemoryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'untitled8';
 constructor(private contexts:ChildrenOutletContexts) {
+
 }
 
 //ts:TimeSInkService = new TimeSInkService;
