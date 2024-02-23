@@ -18,7 +18,7 @@ import {TimeSInkService} from "../../time-sink.service";
   <p>
     Minutes left :
   </p>
-  <p>{{timeIN()}}</p>
+  <p>{{TimeSInkService.minutesLeft()}}</p>
     <p>
     Seconds left :
     </p>
@@ -67,6 +67,7 @@ export class TimerComponent implements OnInit{
   //  this.stickyTop = document.querySelector('header')!.offsetTop;
   }
 
+  protected readonly TimeSInkService = TimeSInkService;
 }
 // @Component({
 //   selector: 'app-timer',

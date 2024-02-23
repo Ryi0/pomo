@@ -73,6 +73,7 @@ export class TimeBoxComponent {
   _thisActuallyMagicFrFr = effect(() => {
     if (this.timeLeft()%59===0){
       this.interCounter--;
+      // TimeSInkService.minutesIn=this.interCounter;
       console.log("Inter Counter : "+this.interCounter)
     }
     this.started = !this.timeEnded();
@@ -108,8 +109,9 @@ export class TimeBoxComponent {
       console.log(this.mode())
     }
     else {
+      TimeSInkService.minutesLeft.set(this.inputTime);
       this.interCounter = this.inputTime;
-      this.timeLeft.set(60);
+      this.timeLeft.set(61);
     }
 
     //this.ts.setTimeLeft(this.timeLeft());
@@ -121,7 +123,8 @@ export class TimeBoxComponent {
         this.stopTimer();
       }else {
         if (this.timeLeft()===1){
-          this.timeLeft.set(60);
+          TimeSInkService.minutesLeft.update(value => value-1);
+          this.timeLeft.set(61);
         }
         console.log("Inter counter : "+this.interCounter)
         this.timeLeft.update(value => value - 1)
