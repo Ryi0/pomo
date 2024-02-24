@@ -15,14 +15,10 @@ import {TimeSInkService} from "../../time-sink.service";
     <div [style.margin-top.px]="0">
 <header [ngClass]="{'sticky':isSticky, 'notSticky':!isSticky}" >
 <!--  [ngStyle]="{'top.px':stickyTop}"-->
-  <p>
-    Minutes left :
-  </p>
-  <p>{{TimeSInkService.minutesLeft()}}</p>
     <p>
-    Seconds left :
+    Time Left :
     </p>
-  <p>{{TimeSInkService.timeInSeconds()}}</p>
+  <p>{{TimeSInkService.FormattedString()}}</p>
 </header>
     </div>
   `,

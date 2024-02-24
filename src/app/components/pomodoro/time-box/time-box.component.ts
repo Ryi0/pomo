@@ -19,14 +19,14 @@ import {ThisReceiver} from "@angular/compiler";
       <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
 
     <p>
-      {{TimeSInkService.timeInSeconds()}}
+      {{TimeSInkService.FormattedString()}}
 
     </p>
 
 
     <div>
       <ul>
-        <li> <app-button [isGrey]="!TimeSInkService.timeEnded()" id="_starter" type="funcBtn"  (click)="TimeSInkService.startTimer(inputTime)" tmpLbl="START"></app-button></li>
+        <li> <app-button [isGrey]="!TimeSInkService.timeEnded()" id="_starter" type="funcBtn"  (click)="TimeSInkService.timerSetup(inputTime)" tmpLbl="START"></app-button></li>
         <li>  <app-button [isGrey]="TimeSInkService.timeEnded()" id="_stopper" type="funcBtn" (click)="TimeSInkService.stopTimer()" tmpLbl="STOP"></app-button></li>
       </ul>
       <h1 *ngIf="TimeSInkService.timeEnded()"> Time's up!</h1>
@@ -58,7 +58,10 @@ import {ThisReceiver} from "@angular/compiler";
   }`
 })
 export class TimeBoxComponent {
-  mode = input<"minutes"|"seconds">("minutes");
+ // mode = input<"minutes"|"seconds">("minutes");
+  modeChecker = computed(()=>{
+
+  })
   inputTime = 0;
   locked = false;
   // interval:any = TimeSInkService.getInterval();

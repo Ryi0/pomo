@@ -5,9 +5,9 @@
 
     <div class="container">
       <app-button (click)="changeMode()" type="funcBtn" tmpLbl="Change mode"></app-button>
-      <app-time-box [mode]="modePom"></app-time-box>
+      <app-time-box ></app-time-box>
     </div>
-  <h1>Mode : {{modePom}}</h1>
+  <h1>Mode : {{TimeSInkService.Mode()}}</h1>
   </div>
 
 </div>

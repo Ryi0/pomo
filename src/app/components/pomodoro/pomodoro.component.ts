@@ -1,6 +1,7 @@
 import {Component, input, Input} from '@angular/core';
 import {TimeBoxComponent} from "./time-box/time-box.component";
 import {ButtonComponent} from "../items/button/button.component";
+import {TimeSInkService} from "../../time-sink.service";
 
 @Component({
   selector: 'app-pomodoro',
@@ -14,11 +15,13 @@ import {ButtonComponent} from "../items/button/button.component";
 })
 export class PomodoroComponent {
   // mode = input<"minutes"|"seconds">("minutes");
-  modePom:"minutes"|"seconds" = "seconds";
+ // modePom:"minutes"|"seconds" = "seconds";
   changeMode(){
-    if (this.modePom==="minutes"){
-      this.modePom="seconds";
+    if (TimeSInkService.Mode()==="Minutes"){
+      TimeSInkService.Mode.set("Seconds");
     }
-    else this.modePom="minutes";
+    else TimeSInkService.Mode.set("Minutes");
   }
+
+  protected readonly TimeSInkService = TimeSInkService;
 }
