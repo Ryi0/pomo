@@ -19,17 +19,17 @@ import {ThisReceiver} from "@angular/compiler";
       <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
 
     <p>
-      {{TimeSInkService.getCurrentTime()}}
-      {{ timeLeft() }}
+      {{TimeSInkService.timeInSeconds()}}
+
     </p>
 
 
     <div>
       <ul>
-        <li> <app-button [isGrey]="started" id="_starter" type="funcBtn"  (click)="startTimer()" tmpLbl="START"></app-button></li>
-        <li>  <app-button [isGrey]="!started" id="_stopper" type="funcBtn" (click)="stopTimer()" tmpLbl="STOP"></app-button></li>
+        <li> <app-button [isGrey]="!TimeSInkService.timeEnded()" id="_starter" type="funcBtn"  (click)="TimeSInkService.startTimer(inputTime)" tmpLbl="START"></app-button></li>
+        <li>  <app-button [isGrey]="TimeSInkService.timeEnded()" id="_stopper" type="funcBtn" (click)="TimeSInkService.stopTimer()" tmpLbl="STOP"></app-button></li>
       </ul>
-      <h1 *ngIf="timeEnded()"> Time's up!</h1>
+      <h1 *ngIf="TimeSInkService.timeEnded()"> Time's up!</h1>
 
     </div>
   `,
@@ -59,93 +59,89 @@ import {ThisReceiver} from "@angular/compiler";
 })
 export class TimeBoxComponent {
   mode = input<"minutes"|"seconds">("minutes");
-  waitTimeSetter = computed(()=>{
-    if (this.mode()==="minutes"){
-      return 60;
-    }
-    else return 1;
-  })
+  inputTime = 0;
   locked = false;
-  interval:any = TimeSInkService.getInterval();
-  inputTime = 10;
-  timeLeft = TimeSInkService.curTime;
-  timeEnded = computed(()=> this.timeLeft() <= 0);
-  _thisActuallyMagicFrFr = effect(() => {
-    if (this.timeLeft()%59===0){
-      this.interCounter--;
-      // TimeSInkService.minutesIn=this.interCounter;
-      console.log("Inter Counter : "+this.interCounter)
-    }
-    this.started = !this.timeEnded();
-   // TimeSInkService.setCurrentTime(this.timeLeft());
-    // console.log("LOL THIS IS NOT CALLED HOW DOES IT WORK???")
-    /*
-    Actually pretty simple. It runs once when the component is initialized. It then tracks any signal calls
-    inside the brackets. Everytime that those signals change, the code is executed.
-    */
-  })
-  interCounter = 60;
+  // interval:any = TimeSInkService.getInterval();
 
-  //I like having conversations with my sleep deprived mind. I answer questions the following morning it makes me feel like i'm part of something
-  //started = signal(false);
-  started = false;
-  /**
-   * Ooof, I have started() and timeLeft() AND timeEnded().
-   * Bloat on par with bonzi buddy
-   */
-
-
-  startTimer() {
-    if (this.started||!TimeSInkService.ended()){
-      return
-    }
-
-    else this.started = true;
-    clearInterval(this.interval)
-    this.locked=true
-    if (this.mode()==="seconds"){
-      this.interCounter=1;
-      this.timeLeft.set(this.inputTime)
-      console.log(this.mode())
-    }
-    else {
-      TimeSInkService.minutesLeft.set(this.inputTime);
-      this.interCounter = this.inputTime;
-      this.timeLeft.set(61);
-    }
-
-    //this.ts.setTimeLeft(this.timeLeft());
-    this.interval = setInterval(() => {
-      if (this.interCounter===0){
-        this.timeLeft.set(0);
-      }
-      if (this.timeEnded()){
-        this.stopTimer();
-      }else {
-        if (this.timeLeft()===1){
-          TimeSInkService.minutesLeft.update(value => value-1);
-          this.timeLeft.set(61);
-        }
-        console.log("Inter counter : "+this.interCounter)
-        this.timeLeft.update(value => value - 1)
-        TimeSInkService.setCurrentTime(this.timeLeft())
-        console.log(TimeSInkService.getCurrentTime())
-        //this.ts.setTimeLeft(this.timeLeft());
-      }
-    },1000)
-    TimeSInkService.setInterval(this.interval);
-  }
-  stopTimer(){
-    this.interCounter=10;
-    this.locked=false;
-    clearInterval(this.interval);
-    clearInterval(TimeSInkService.currentInterval);
-    TimeSInkService.setCurrentTime(0);
-    TimeSInkService.clearIntervalFunction();
-    this.started = false;
-      TimeSInkService.setInterval(undefined);
-
-  }
-
+  // timeLeft = TimeSInkService.curTime;
+  // timeEnded = computed(()=> this.timeLeft() <= 0);
+  // _thisActuallyMagicFrFr = effect(() => {
+  //   if (this.timeLeft()%59===0){
+  //     this.interCounter--;
+  //     // TimeSInkService.minutesIn=this.interCounter;
+  //     console.log("Inter Counter : "+this.interCounter)
+  //   }
+  //   this.started = !this.timeEnded();
+  //  // TimeSInkService.setCurrentTime(this.timeLeft());
+  //   // console.log("LOL THIS IS NOT CALLED HOW DOES IT WORK???")
+  //   /*
+  //   Actually pretty simple. It runs once when the component is initialized. It then tracks any signal calls
+  //   inside the brackets. Everytime that those signals change, the code is executed.
+  //   */
+  // })
+  // interCounter = 60;
+  //
+  // //I like having conversations with my sleep deprived mind. I answer questions the following morning it makes me feel like i'm part of something
+  // //started = signal(false);
+  // started = false;
+  // /**
+  //  * Ooof, I have started() and timeLeft() AND timeEnded().
+  //  * Bloat on par with bonzi buddy
+  //  */
+  //
+  //
+  // startTimer() {
+  //   if (this.started||!TimeSInkService.ended()){
+  //     return
+  //   }
+  //
+  //   else this.started = true;
+  //   clearInterval(this.interval)
+  //   this.locked=true
+  //   if (this.mode()==="seconds"){
+  //     this.interCounter=1;
+  //     this.timeLeft.set(this.inputTime)
+  //     console.log(this.mode())
+  //   }
+  //   else {
+  //     TimeSInkService.minutesLeft.set(this.inputTime);
+  //     this.interCounter = this.inputTime;
+  //     this.timeLeft.set(61);
+  //   }
+  //
+  //   //this.ts.setTimeLeft(this.timeLeft());
+  //   this.interval = setInterval(() => {
+  //     if (this.interCounter===0){
+  //       this.timeLeft.set(0);
+  //     }
+  //     if (this.timeEnded()){
+  //       this.stopTimer();
+  //     }else {
+  //       if (this.timeLeft()===1){
+  //         TimeSInkService.minutesLeft.update(value => value-1);
+  //         this.timeLeft.set(61);
+  //       }
+  //       console.log("Inter counter : "+this.interCounter)
+  //       this.timeLeft.update(value => value - 1)
+  //       TimeSInkService.setCurrentTime(this.timeLeft())
+  //       console.log(TimeSInkService.getCurrentTime())
+  //       //this.ts.setTimeLeft(this.timeLeft());
+  //     }
+  //   },1000)
+  //   TimeSInkService.setInterval(this.interval);
+  // }
+  // stopTimer(){
+  //   this.interCounter=10;
+  //   this.locked=false;
+  //   clearInterval(this.interval);
+  //   clearInterval(TimeSInkService.currentInterval);
+  //   TimeSInkService.setCurrentTime(0);
+  //   TimeSInkService.clearIntervalFunction();
+  //   this.started = false;
+  //     TimeSInkService.setInterval(undefined);
+  //
+  // }
+  //
+  // protected readonly TimeSInkService = TimeSInkService;
   protected readonly TimeSInkService = TimeSInkService;
 }

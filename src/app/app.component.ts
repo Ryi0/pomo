@@ -23,11 +23,6 @@ constructor(private contexts:ChildrenOutletContexts) {
 }
 
 //ts:TimeSInkService = new TimeSInkService;
-seeMainTS(){
-  console.log(
-  TimeSInkService.getCurrentTime())
-  // console.log(this.ts.timeLeft())
-}
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }

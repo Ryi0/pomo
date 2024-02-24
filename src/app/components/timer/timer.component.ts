@@ -22,7 +22,7 @@ import {TimeSInkService} from "../../time-sink.service";
     <p>
     Seconds left :
     </p>
-  <p>{{timeIN()}}</p>
+  <p>{{TimeSInkService.timeInSeconds()}}</p>
 </header>
     </div>
   `,
@@ -43,7 +43,7 @@ import {TimeSInkService} from "../../time-sink.service";
 })
 export class TimerComponent implements OnInit{
 
-  timeIN = input<number>(0);
+ // timeIN = input<number>(0);
   @Output() timeOUT = 0;
   protected readonly onscroll = onscroll;
   isSticky: boolean = false;
@@ -64,39 +64,9 @@ export class TimerComponent implements OnInit{
     this.stickyTop = document.querySelector('header')!.offsetTop;
   }
   ngOnInit() {
-  //  this.stickyTop = document.querySelector('header')!.offsetTop;
+
   }
 
   protected readonly TimeSInkService = TimeSInkService;
 }
-// @Component({
-//   selector: 'app-timer',
-//   standalone: true,
-//   imports: [
-//     NgClass
-//   ],
-//   template: `
-//     <div  [ngClass]="isNavbarFixed?'fixed':'notfixed'">
-//     <p>
-//       timer works!
-//     </p>
-//     </div>
-//   `,
-//   styles: `
-//     .fixed{
-//       position: fixed;
-//       z-index: 2;
-//       width: 100%;
-//     }
-//     .notfixed{
-//       position: static;
-//       top: -60px;
-//     }`
-// })
-// export class TimerComponent {
-//
-//   timeIN = input<number>();
-//   @Output() timeOUT = 0;
-//   protected readonly onscroll = onscroll;
-//   isNavbarFixed: boolean = true;
-// }
+

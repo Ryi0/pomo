@@ -1,45 +1,56 @@
-import {computed, effect, Injectable, signal} from '@angular/core';
+import {computed, effect, Injectable, OnInit, signal} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeSInkService {
+  private static currentInterval:any;
+  static timeInSeconds = signal(0);
   static curTime = signal(0);
-  static minutesLeft = signal(0);
-  private static lastKnownMinuteCalc=0;
-  static minutesInSeconds = signal(TimeSInkService.minutesLeft()*60)
-  static minuteLeftCalc = computed(()=>{
-      // if (TimeSInkService.minutesInSeconds()%60===0){
-      //   TimeSInkService.lastKnownMinuteCalc = TimeSInkService.minutesInSeconds()/60;
-      //   return TimeSInkService.minutesInSeconds()/60;
-      // }
-      //
-      // else {
-      //   return TimeSInkService.minutesInSeconds()/60;
-      // }
-  })
-  static getCurrentTime(){
-    return this.curTime();
-  }
-  static setCurrentTime(time:number){
-
-    this.curTime.set(time)
-  }
-  static currentInterval:any;
-  static setInterval(interval:any){
-    if (this.currentInterval){
-      return
+  static minutesLeft = computed(()=>TimeSInkService.timeInSeconds()/60);
+  public static timeEnded = computed(() => {
+    if (TimeSInkService.listening()){
+      console.log("Time ended signal is listening")
+      return TimeSInkService.timeInSeconds()<=0;
     }
-    this.currentInterval=interval;
+    else return false;
   }
-  static  getInterval(){
-    return this.currentInterval;
+    )
+  private static listening = signal(false);
+
+  static startTimer(time:number){
+
+    if (TimeSInkService.timeEnded()) {
+
+      if (TimeSInkService.listening()) {
+        TimeSInkService.listening.set(false);
+      }
+      TimeSInkService.stopTimer();
+    }
+
+    let _tmpTime = time;
+      this.timeInSeconds.set(time);
+      this.currentInterval = setInterval(() => {
+      this.timeInSeconds.update(value => value-1);
+      _tmpTime--;
+      if (_tmpTime===5){
+        this.listening.set(true);
+      }
+        console.log(`Time ended : ${this.timeEnded()}`)
+        console.log(`Time listening : ${this.listening()}`)
+        if (this.timeEnded()){
+          this.listening.set(false);
+          this.stopTimer();
+        }
+      },1000)
   }
-
-  static ended=computed(()=>TimeSInkService.curTime()<=0)
-
-  static clearIntervalFunction(){
+  static stopTimer(){
     clearInterval(this.currentInterval)
   }
-  constructor() { }
+
+  constructor() {
+
+  }
+
+
 }
