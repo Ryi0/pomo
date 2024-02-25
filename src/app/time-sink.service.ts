@@ -14,6 +14,8 @@ export class TimeSInkService {
   private static readonly HOURS = "Hours";
   private static readonly DAYS  = "Days";
 
+
+  private static organicStop = true;
   private static listening = signal(false);
   private static currentInterval:any;
   private static timeInSeconds = signal(0);
@@ -27,7 +29,7 @@ export class TimeSInkService {
   })
 
   public static timerStartedSwitch = signal(false);
-
+  public static sessionCounter = signal(0);
   public static Mode: WritableSignal<"Seconds"|"Minutes"|"Hours"|"Days"> = signal("Seconds");
   public static FormattedString = computed(()=>{
     return TimeSInkService.timeDisplay(TimeSInkService.timeInSeconds())
@@ -67,14 +69,11 @@ export class TimeSInkService {
     return strTime;
   }
   private static startTimer(time:number){
-
+    if (this.organicStop) {
+      this.sessionCounter.update(value => value + 1);
+    }
     console.log("Outer log "+this.getSwitch())
-    if (!this.timeEnded()) {
-      this.stopTimer();
-      if (this.listening()) {
-        this.listening.set(false);
-      }
-    } //checks if time has ended then stops timer with func
+
 
       this.timerStartedSwitch.set(true);
       let _tmpTime = time;
@@ -91,14 +90,14 @@ export class TimeSInkService {
         console.log(`Time listening : ${this.listening()}`)
         if (this.timeEnded()){
 
-          this.stopTimer();
+          this.stopTimer(true);
         }
         console.log("Outer log"+this.getSwitch())
       },1000)
 
   }
 
-  public
+
 
   private static getSwitch(){
     console.log("The switch is on : "+this.timerStartedSwitch)
@@ -112,6 +111,12 @@ export class TimeSInkService {
     if (this.timerStartedSwitch()){
       return;
     }
+    if (!this.timeEnded()) {
+   //   this.stopTimer();
+      if (this.listening()) {
+        this.listening.set(false);
+      }
+    } //checks if time has ended then stops timer with func
     const mKV:any = this.getMultiplierUnitTypeKV();
     this.multiplier = mKV[this.Mode()];
     const timeInSeconds = time*this.multiplier
@@ -120,7 +125,8 @@ export class TimeSInkService {
 
   }
 
-  public static stopTimer(){
+  public static stopTimer(stoppedOrganically:boolean){
+    this.organicStop = stoppedOrganically;
     this.timerStartedSwitch.set(false);
     this.timeInSeconds.set(0);
     this.listening.set(false);

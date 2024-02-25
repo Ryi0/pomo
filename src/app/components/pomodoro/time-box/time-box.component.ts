@@ -35,7 +35,7 @@ import * as timers from "timers";
         </li>
         <li>
           <app-button [isDisabled]="!TimeSInkService.timerStartedSwitch()" id="_stopper" type="funcBtn"
-                      (click)="TimeSInkService.stopTimer()"
+                      (click)="TimeSInkService.stopTimer(false)"
                       tmpLbl="STOP"></app-button>
         </li>
 

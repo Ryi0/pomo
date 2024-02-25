@@ -44,14 +44,11 @@ export class TimerComponent implements OnInit{
   protected readonly onscroll = onscroll;
   isSticky: boolean = false;
   scrollPosSig = signal(0);
+  stickyTop: number = 0;
   fixed = computed(()=>{
 
   })
 
-  testFunc(){
-    let ts:TimeSInkService;
-  }
-  stickyTop: number = 0;
   @HostListener('window:scroll', [])
   handleScroll() {
     const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
