@@ -1,10 +1,11 @@
 import {Component, computed, effect, input, Input, Output, signal} from '@angular/core';
 import {interval} from "rxjs";
 import {FormsModule} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {ButtonComponent} from "../../items/button/button.component";
 import {TimeSInkService} from "../../../time-sink.service";
 import {ThisReceiver} from "@angular/compiler";
+import * as timers from "timers";
 
 @Component({
   selector: 'app-time-box',
@@ -12,24 +13,36 @@ import {ThisReceiver} from "@angular/compiler";
   imports: [
     FormsModule,
     NgIf,
-    ButtonComponent
+    ButtonComponent,
+    NgClass
   ],
   template: `
 
-      <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
+    <p>Time : <input type="text" maxlength="2" [(ngModel)]="inputTime" [disabled]="locked"></p>
 
     <p>
-      {{TimeSInkService.FormattedString()}}
+      {{ TimeSInkService.FormattedString() }}
 
     </p>
 
 
     <div>
       <ul>
-        <li> <app-button [isGrey]="!TimeSInkService.timeEnded()" id="_starter" type="funcBtn"  (click)="TimeSInkService.timerSetup(inputTime)" tmpLbl="START"></app-button></li>
-        <li>  <app-button [isGrey]="TimeSInkService.timeEnded()" id="_stopper" type="funcBtn" (click)="TimeSInkService.stopTimer()" tmpLbl="STOP"></app-button></li>
+        <li>
+          <app-button (blur)="TimeSInkService.timerStartedSwitch()" [isDisabled]="TimeSInkService.timerStartedSwitch()" id="_starter" type="funcBtn"
+                      (click)="TimeSInkService.TimerSetup(inputTime)"
+                      tmpLbl="START"></app-button>
+        </li>
+        <li>
+          <app-button [isDisabled]="!TimeSInkService.timerStartedSwitch()" id="_stopper" type="funcBtn"
+                      (click)="TimeSInkService.stopTimer()"
+                      tmpLbl="STOP"></app-button>
+        </li>
+
+        <!--        <li> <app-button [ngClass]="{'greyed' :!TimeSInkService.timeEnded()}" [isGrey]="!TimeSInkService.timeEnded()" id="_starter" type="funcBtn"  (click)="TimeSInkService.timerSetup(inputTime)" tmpLbl="START"></app-button></li>-->
+        <!--        <li>  <app-button [ngClass]="{'greyed' :TimeSInkService.timeEnded()}" [isGrey]="TimeSInkService.timeEnded()" id="_stopper" type="funcBtn" (click)="TimeSInkService.stopTimer()" tmpLbl="STOP"></app-button></li>-->
       </ul>
-      <h1 *ngIf="TimeSInkService.timeEnded()"> Time's up!</h1>
+      <h1 *ngIf="!TimeSInkService.timerStartedSwitch()"> Time's up!</h1>
 
     </div>
   `,
@@ -58,10 +71,7 @@ import {ThisReceiver} from "@angular/compiler";
   }`
 })
 export class TimeBoxComponent {
- // mode = input<"minutes"|"seconds">("minutes");
-  modeChecker = computed(()=>{
 
-  })
   inputTime = 0;
   locked = false;
   // interval:any = TimeSInkService.getInterval();
@@ -145,6 +155,5 @@ export class TimeBoxComponent {
   //
   // }
   //
-  // protected readonly TimeSInkService = TimeSInkService;
   protected readonly TimeSInkService = TimeSInkService;
 }

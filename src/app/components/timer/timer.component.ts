@@ -16,7 +16,7 @@ import {TimeSInkService} from "../../time-sink.service";
 <header [ngClass]="{'sticky':isSticky, 'notSticky':!isSticky}" >
 <!--  [ngStyle]="{'top.px':stickyTop}"-->
     <p>
-    Time Left :
+    Time Left : &nbsp;
     </p>
   <p>{{TimeSInkService.FormattedString()}}</p>
 </header>
