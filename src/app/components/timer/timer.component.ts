@@ -1,5 +1,5 @@
 import {Component, computed, HostListener, input, OnInit, Output, signal} from '@angular/core';
-import {NgClass, NgStyle} from "@angular/common";
+import {NgClass, NgIf, NgStyle} from "@angular/common";
 import {TimeSInkService} from "../../time-sink.service";
 
 
@@ -9,12 +9,14 @@ import {TimeSInkService} from "../../time-sink.service";
   standalone: true,
   imports: [
     NgClass,
-    NgStyle
+    NgStyle,
+    NgIf
   ],
   template: `
     <div [style.margin-top.px]="0">
 <header [ngClass]="{'sticky':isSticky, 'notSticky':!isSticky}" >
 <!--  [ngStyle]="{'top.px':stickyTop}"-->
+  <div *ngIf="TimeSInkService.OnBreak()">Enjoy your break</div>
     <p>
     Time Left : &nbsp;
     </p>

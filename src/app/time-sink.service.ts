@@ -1,5 +1,6 @@
 import {computed, effect, Injectable, OnInit, signal, WritableSignal} from '@angular/core';
-import {max} from "rxjs";
+import {TimeSession} from "./time-session";
+import * as timers from "timers";
 
 
 
@@ -8,13 +9,12 @@ import {max} from "rxjs";
 })
 export class TimeSInkService {
 
-
+  private static sessionSetCheck = false;
   private static readonly SECONDS = "Seconds";
   private static readonly MINUTES = "Minutes";
   private static readonly HOURS = "Hours";
   private static readonly DAYS  = "Days";
-
-
+  public static OnBreak = signal(false);
   private static organicStop = true;
   private static listening = signal(false);
   private static currentInterval:any;
@@ -34,6 +34,9 @@ export class TimeSInkService {
   public static FormattedString = computed(()=>{
     return TimeSInkService.timeDisplay(TimeSInkService.timeInSeconds())
   })
+
+
+
 
   private static getMultiplierUnitTypeKV ():object {
     const s = this.SECONDS;
@@ -68,46 +71,98 @@ export class TimeSInkService {
     :${this.timeToString(timeInSec, maxSeconds)}`;
     return strTime;
   }
+
+
+
+  /**
+   * Introduce additional parameter for what timer and insert the parameter automatically
+   * in function call based on the button that is pressed.
+   * @param time
+   * @param breakTimer
+   * @private
+   */
   private static startTimer(time:number){
     if (this.organicStop) {
-      this.sessionCounter.update(value => value + 1);
+
     }
+    //this.onBreak=false;
     console.log("Outer log "+this.getSwitch())
 
-
+    const timerSetter = () => {
       this.timerStartedSwitch.set(true);
       let _tmpTime = time;
       this.timeInSeconds.set(time);
       this.currentInterval = setInterval(() => {
 
         console.log(this.FormattedString());
-      this.timeInSeconds.update(value => value-1);
-      _tmpTime--;
-      if (_tmpTime===5){
-        this.listening.set(true);
-      }
+        this.timeInSeconds.update(value => value - 1);
+        _tmpTime--;
+        if (_tmpTime === 5) {
+          this.listening.set(true);
+        }
         console.log(`Time ended : ${this.timeEnded()}`)
         console.log(`Time listening : ${this.listening()}`)
-        if (this.timeEnded()){
-
+        if (this.timeEnded()) {
+          this.sessionCounter.update(value => value + 1);
           this.stopTimer(true);
         }
-        console.log("Outer log"+this.getSwitch())
-      },1000)
-
+        console.log("Outer log" + this.getSwitch())
+      }, 1000)
+    }
+    timerSetter.call(this);
   }
 
+  public static  changeMode(){
 
-
+    if (TimeSInkService.Mode()==="Minutes"){
+      if (this.sessionSetCheck){
+        this.session.workTimeDuration = this.session.workTimeDuration*60;
+        this.session.breakTimeDuration = this.session.breakTimeDuration*60
+      }
+      TimeSInkService.Mode.set("Seconds");
+    }
+    else {
+      if (this.sessionSetCheck){
+        this.session.workTimeDuration = this.session.workTimeDuration/60;
+        this.session.breakTimeDuration = this.session.breakTimeDuration/60
+      }
+      TimeSInkService.Mode.set("Minutes");
+    }
+  }
+  public static getBreak(){
+    console.log("On break ? "+this.OnBreak())
+    return this.OnBreak();
+  }
   private static getSwitch(){
     console.log("The switch is on : "+this.timerStartedSwitch)
     return this.timerStartedSwitch;
   }
+
+  /**
+   * Completely optional. Uses values assigned previously to the session for
+   * the break timer and the work timer
+   * @constructor
+   */
+ static TimerSetupFromSession(){
+   if (this.OnBreak()){
+     this.TimerSetup(this.session.breakTimeDuration);
+   }
+
+    else this.TimerSetup(this.session.workTimeDuration);
+  }
+  static getTimerFromSession():number{
+    if (this.OnBreak()){
+      return this.session.breakTimeDuration;
+    }
+
+    else return this.session.workTimeDuration;
+  }
+
   /**
    * who cares about readability anyways
    * @param time will be modified based on the Mode()
    */
-  public static TimerSetup(time:number){
+  public static TimerSetup(time: number){
     if (this.timerStartedSwitch()){
       return;
     }
@@ -117,21 +172,66 @@ export class TimeSInkService {
         this.listening.set(false);
       }
     } //checks if time has ended then stops timer with func
+    // const varToUse = this.sessionSetCheck?this.getTimerFromSession():time
+    // if (this.sessionSetCheck){
+    //   console.log(this.session)
+    //   this.TimerSetupFromSession();
+    // //  return;
+    // }
+
     const mKV:any = this.getMultiplierUnitTypeKV();
     this.multiplier = mKV[this.Mode()];
-    const timeInSeconds = time*this.multiplier
+    const timeInSeconds = ((this.sessionSetCheck?this.getTimerFromSession():time)*this.multiplier)
+    // const timeInSeconds = varToUse*this.multiplier
     timeInSeconds>5?this.startTimer(timeInSeconds):null;
-
-
+    console.log(this.session)
   }
 
+
   public static stopTimer(stoppedOrganically:boolean){
+    this.OnBreak.update(value => !value)
     this.organicStop = stoppedOrganically;
     this.timerStartedSwitch.set(false);
     this.timeInSeconds.set(0);
     this.listening.set(false);
     clearInterval(this.currentInterval)
   }
+  private static session:TimeSession = new class implements TimeSession {
+    breakTimeDuration: number = 0;
+    workTimeDuration: number = 0;
+
+  };
+  public static sessionSetter(breakTime:number,workTime:number) {
+
+    if (breakTime*workTime===0){
+
+      return;
+    }
+    if (this.Mode() === "Seconds") {
+      if (breakTime <= 5) {
+        return;
+      }
+      if (workTime<=5){
+        return;
+      }
+    }
+    this.sessionSetCheck = true;
+    this.session.breakTimeDuration = breakTime;
+    this.session.workTimeDuration = workTime;
+    console.log(this.session)
+  }
+
+
+
+
+  private static setBreakTime(time:number){
+
+  }
+
+  private static setWorkTime(time:number){
+
+  }
+
 
   constructor() {
   throw new Error();

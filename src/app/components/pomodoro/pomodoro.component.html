@@ -1,15 +1,20 @@
 
 <div class="pyramidGreen spacer">
-  <div class="container"></div>
-  <div class="contBg">
-
-    <div class="container">
-      <app-button (click)="changeMode()" type="funcBtn" tmpLbl="Change mode"></app-button>
-      <app-time-box ></app-time-box>
-    </div>
-  <h1>Mode : {{TimeSInkService.Mode()}}</h1>
-
+  <div class="modeSelectorCont">
+   <div class="mediumComp">
+     <h1>Mode&nbsp;:&nbsp;{{TimeSInkService.Mode()}}</h1>
+     <app-button (click)="TimeSInkService.changeMode()" type="funcBtn" tmpLbl="Change mode" [isDisabled]="false"></app-button>
+ </div>
   </div>
+
+  <div class="contBg">
+    <div class="container"> <app-session-setup></app-session-setup> </div>
+    <div class="container">
+          <app-time-box ></app-time-box>
+    </div>
+  </div>
+
   <h3>Sessions completed : {{TimeSInkService.sessionCounter()}}</h3>
 </div>
+
 <section></section>

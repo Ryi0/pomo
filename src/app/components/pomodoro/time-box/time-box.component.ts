@@ -29,12 +29,14 @@ import * as timers from "timers";
     <div>
       <ul>
         <li>
-          <app-button (blur)="TimeSInkService.timerStartedSwitch()" [isDisabled]="TimeSInkService.timerStartedSwitch()" id="_starter" type="funcBtn"
+          <app-button [isDisabled]="TimeSInkService.timerStartedSwitch()"
+                      id="_starter" type="funcBtn"
                       (click)="TimeSInkService.TimerSetup(inputTime)"
-                      tmpLbl="START"></app-button>
+                      [tmpLbl]="!TimeSInkService.OnBreak()?'Start Work':'Start Break'"></app-button>
         </li>
         <li>
-          <app-button [isDisabled]="!TimeSInkService.timerStartedSwitch()" id="_stopper" type="funcBtn"
+          <app-button [isDisabled]="!TimeSInkService.timerStartedSwitch()"
+                      id="_stopper" type="funcBtn"
                       (click)="TimeSInkService.stopTimer(false)"
                       tmpLbl="STOP"></app-button>
         </li>
