@@ -66,7 +66,7 @@ export class DataVisualizerComponent {
   testUser = new User(this.selectedId, "Bob");
   userAsSig = signal(this.testUser);
   clickHandler(){
-    this.testUser = new User(9, "Bob");
+    this.testUser = new User(this.selectedId , "Bob");
     this.userAsSig.set(this.testUser);
     console.log(this.testUser.dataMap())
     console.log(this.testUser.getKVPairs())
