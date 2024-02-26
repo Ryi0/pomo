@@ -12,6 +12,7 @@ import {ButtonComponent} from "../button/button.component";
     <ul>
       <li><app-button type="routingBtn" tmpLbl="Memory2000"></app-button></li>
       <li><app-button type="routingBtn" tmpLbl="Shaper"></app-button></li>
+      <li><app-button type="routingBtn" tmpLbl="Data&nbsp;Visualizer" route="visualizer"></app-button> </li>
       <li><app-button type="routingBtn" tmpLbl="Notes"></app-button></li>
     </ul>
     </div>

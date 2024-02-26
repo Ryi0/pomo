@@ -202,9 +202,7 @@ export class TimeSInkService {
 
   };
   public static sessionSetter(breakTime:number,workTime:number) {
-
     if (breakTime*workTime===0){
-
       return;
     }
     if (this.Mode() === "Seconds") {
