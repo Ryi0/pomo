@@ -22,6 +22,11 @@ export class User {
     this.name = name
   }
 
+
+  public dataMap(){
+    const map:Map<any, any> = new Map(this.getKVPairs());
+    return map;
+  }
   public toString() {
     let message = "";
     message = "Name : "+this.name + " ID: " + this.userStats._userId;
