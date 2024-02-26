@@ -15,20 +15,21 @@ import {NgForOf, NgIf} from "@angular/common";
     NgIf
   ],
   template: `
-<!--    <div  class="statsContainer">-->
-<!--      <ng-container *ngFor="let kvPair of  userAsObj.getKVPairs()">-->
-<!--        <div class="gridKey">{{kvPair[1]}}</div>-->
-<!--      </ng-container>-->
-<!--    </div>-->
-<ng-container *ngIf="selectedUser">
-<h1>Welcome {{selectedUser}}</h1>
-</ng-container>
-<label for="userss">Select User:</label>
-<select [(ngModel)]="selectedUser" name="userss" id="userss">
-  <option *ngFor="let user of  UserDataHandlerService.localLoggedUsers"
-          [ngValue]="user.name">{{ user.toString() }}
-  </option>
-</select>
+    <!--    <div  class="statsContainer">-->
+    <!--      <ng-container *ngFor="let kvPair of  userAsObj.getKVPairs()">-->
+    <!--        <div class="gridKey">{{kvPair[1]}}</div>-->
+    <!--      </ng-container>-->
+    <!--    </div>-->
+    <ng-container *ngIf="selectedUser">
+      <h1>Welcome {{ selectedUser.name }}</h1>
+    </ng-container>
+    <label for="userss">Select User:</label>
+    <select [(ngModel)]="selectedUser" name="userss" id="userss">
+      <option  *ngFor="let user of  UserDataHandlerService.localLoggedUsers"
+              [ngValue]="user">{{ user.toString() }}
+
+      </option>
+    </select>
     <div class="modeSelectorCont">
       <div class="mainCont">
 
@@ -39,21 +40,16 @@ import {NgForOf, NgIf} from "@angular/common";
         </div>
       </div>
 
-      <div  class="statsContainer">
-        <ng-container *ngIf="selectedUser">
-          <ng-container> <h2>User Stats : </h2>
-            <ng-container *ngFor="let user of  UserDataHandlerService.localLoggedUsers">
-                <ng-container *ngFor="let kvPair of user.getKVPairs()">
-                <div class="gridRow">
-                  <div class="gridKey">{{kvPair[0]}}</div>
-                  <div class="gridValue">{{kvPair[1]}}</div>
-
-                </div>
+      <div class="statsContainer">
+        <ng-container *ngIf="selectedUser!=undefined">
+          <ng-container><h2>User Stats : </h2>
+                <ng-container *ngFor="let kvPair of selectedUser.getKVPairs()">
+              <div class="gridRow">
+                <div class="gridKey">{{ kvPair[0] }}</div>
+                <div class="gridValue">{{ kvPair[1] }}</div>
+              </div>
                 </ng-container>
-            </ng-container>
           </ng-container>
-
-
         </ng-container>
 
       </div>
@@ -65,13 +61,25 @@ import {NgForOf, NgIf} from "@angular/common";
   styleUrl: './user-select.component.scss'
 })
 export class UserSelectComponent {
+
   userAsObj!: User;
-  selectedUser:User|undefined;
+  selectedUser: User|undefined;
+  getSelectedStats(user:User|undefined){
+    if (user!=undefined) {
+      console.log(user)
+      return user.userStats;
+    }
+    else return false
+  }
+  indexOfOfOption = -1
   selectionId = -1;
   inputName : string = "";
   private uDataService  = new UserDataHandlerService;
-  localLoggedUsers:Array<User> = new Array<User>();
+  // localLoggedUsers:Array<User> = new Array<User>();
   clickHandler(){
+    console.log(this.indexOfOfOption);
+    console.log(this.selectionId);
+    console.log(typeof this.selectedUser)
     const u = new User(this.selectionId, this.inputName);
     //this.localLoggedUsers.push(u);
     //console.log(u);

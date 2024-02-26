@@ -78,7 +78,6 @@ export class TimeSInkService {
    * Introduce additional parameter for what timer and insert the parameter automatically
    * in function call based on the button that is pressed.
    * @param time
-   * @param breakTimer
    * @private
    */
   private static startTimer(time:number){

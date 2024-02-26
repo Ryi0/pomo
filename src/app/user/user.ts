@@ -27,7 +27,7 @@ export class User {
     message = "Name : "+this.name + " ID: " + this.userStats._userId;
     return message;
   }
-  getKVPairs(){
+  public getKVPairs(){
     const kv = Object.entries(this.userStats);
     return kv
   }
