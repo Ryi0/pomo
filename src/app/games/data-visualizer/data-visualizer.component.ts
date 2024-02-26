@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {ButtonComponent} from "../../components/items/button/button.component";
 import {TimeSInkService} from "../../time-sink.service";
 import {VisualizingToolComponent} from "./visualizing-tool/visualizing-tool.component";
@@ -24,8 +24,7 @@ import {User} from "../../user/user";
           <app-button type="funcBtn" (click)="clickHandler()" tmpLbl="Visualize" [isDisabled]="false"></app-button>
         </div>
         <div class="toolContainer">
-          <app-visualizing-tool [inputUser]="testUser">
-
+          <app-visualizing-tool [inputUser]="userAsSig()">
           </app-visualizing-tool>
         </div>
       </div>
@@ -61,11 +60,17 @@ import {User} from "../../user/user";
 
 
 export class DataVisualizerComponent {
-  selectedId:number = -5;
+  selectedId:number = 1;
+
   uDataService = new UserDataHandlerService();
-  testUser = new User(1, "Bob");
+  testUser = new User(this.selectedId, "Bob");
+  userAsSig = signal(this.testUser);
   clickHandler(){
-    this.uDataService.logUserData(this.selectedId);
+    this.testUser = new User(9, "Bob");
+    this.userAsSig.set(this.testUser);
+    console.log(this.testUser.dataMap())
+    console.log(this.testUser.getKVPairs())
+   // this.uDataService.logUserData(5);
   }
  // uDataService = UserDataHandlerService;
   protected readonly TimeSInkService = TimeSInkService;

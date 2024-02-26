@@ -23,7 +23,7 @@ export class User {
   }
 
 
-  public dataMap(){
+  public dataMap(): Map<any, any> {
     const map:Map<any, any> = new Map(this.getKVPairs());
     return map;
   }
@@ -32,19 +32,12 @@ export class User {
     message = "Name : "+this.name + " ID: " + this.userStats._userId;
     return message;
   }
-  public getKVPairs(){
+  public getKVPairs(): [string, any][] {
     const kv = Object.entries(this.userStats);
     return kv
   }
-  public getValuesAsValuesArray(){
-    const values = Object.values(this.userStats);
-    return values;
-  }
-
-
-
-  // public getSomething(){
-  //   const something = this.getKVPairs().entries().next();
-  //   return something
+  // public getValuesAsValuesArray(){
+  //   const values = Object.values(this.userStats);
+  //   return values;
   // }
 }
