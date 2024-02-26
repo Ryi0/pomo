@@ -20,11 +20,11 @@ import {NgForOf, NgIf} from "@angular/common";
     <!--        <div class="gridKey">{{kvPair[1]}}</div>-->
     <!--      </ng-container>-->
     <!--    </div>-->
-    <ng-container *ngIf="selectedUser">
-      <h1>Welcome {{ selectedUser.name }}</h1>
+    <ng-container *ngIf="UserDataHandlerService.Selection">
+      <h1>Welcome {{ UserDataHandlerService.Selection.name }}</h1>
     </ng-container>
     <label for="userss">Select User:</label>
-    <select [(ngModel)]="selectedUser" name="userss" id="userss">
+    <select [(ngModel)]="UserDataHandlerService.Selection" name="userss" id="userss">
       <option  *ngFor="let user of  UserDataHandlerService.localLoggedUsers"
               [ngValue]="user">{{ user.toString() }}
 
@@ -41,9 +41,9 @@ import {NgForOf, NgIf} from "@angular/common";
       </div>
 
       <div class="statsContainer">
-        <ng-container *ngIf="selectedUser!=undefined">
+        <ng-container *ngIf="UserDataHandlerService.Selection!=undefined">
           <ng-container><h2>User Stats : </h2>
-                <ng-container *ngFor="let kvPair of selectedUser.getKVPairs()">
+                <ng-container *ngFor="let kvPair of UserDataHandlerService.Selection.getKVPairs()">
               <div class="gridRow">
                 <div class="gridKey">{{ kvPair[0] }}</div>
                 <div class="gridValue">{{ kvPair[1] }}</div>

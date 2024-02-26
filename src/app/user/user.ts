@@ -31,4 +31,15 @@ export class User {
     const kv = Object.entries(this.userStats);
     return kv
   }
+  public getValuesAsValuesArray(){
+    const values = Object.values(this.userStats);
+    return values;
+  }
+
+
+
+  // public getSomething(){
+  //   const something = this.getKVPairs().entries().next();
+  //   return something
+  // }
 }

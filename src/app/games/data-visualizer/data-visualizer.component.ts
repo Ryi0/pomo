@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ButtonComponent} from "../../components/items/button/button.component";
 import {TimeSInkService} from "../../time-sink.service";
 import {VisualizingToolComponent} from "./visualizing-tool/visualizing-tool.component";
 import {UserDataHandlerService} from "../../../assets/data/user-data-handler.service";
 import {FormsModule} from "@angular/forms";
+import {User} from "../../user/user";
 
 @Component({
   selector: 'app-data-visualizer',
@@ -23,7 +24,7 @@ import {FormsModule} from "@angular/forms";
           <app-button type="funcBtn" (click)="clickHandler()" tmpLbl="Visualize" [isDisabled]="false"></app-button>
         </div>
         <div class="toolContainer">
-          <app-visualizing-tool>
+          <app-visualizing-tool [inputUser]="testUser">
 
           </app-visualizing-tool>
         </div>
@@ -62,6 +63,7 @@ import {FormsModule} from "@angular/forms";
 export class DataVisualizerComponent {
   selectedId:number = -5;
   uDataService = new UserDataHandlerService();
+  testUser = new User(1, "Bob");
   clickHandler(){
     this.uDataService.logUserData(this.selectedId);
   }
