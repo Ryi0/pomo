@@ -2,23 +2,31 @@ import { Component } from '@angular/core';
 import {ButtonComponent} from "../../components/items/button/button.component";
 import {TimeSInkService} from "../../time-sink.service";
 import {VisualizingToolComponent} from "./visualizing-tool/visualizing-tool.component";
+import {UserDataHandlerService} from "../../../assets/data/user-data-handler.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-data-visualizer',
   standalone: true,
   imports: [
     ButtonComponent,
-    VisualizingToolComponent
+    VisualizingToolComponent,
+    FormsModule
   ],
   template: `
     <h1>Visualizer</h1>
     <div class="contBg">
       <div class="buttonsContainerDV">
         <div class="container">
+          <input type="text" [(ngModel)]="selectedId">
           <app-button type="funcBtn" tmpLbl="Input&nbsp;Data" [isDisabled]="false"></app-button>
-          <app-button type="funcBtn" tmpLbl="Visualize" [isDisabled]="false"></app-button>
+          <app-button type="funcBtn" (click)="clickHandler()" tmpLbl="Visualize" [isDisabled]="false"></app-button>
         </div>
-        <div class="toolContainer"><app-visualizing-tool></app-visualizing-tool></div>
+        <div class="toolContainer">
+          <app-visualizing-tool>
+
+          </app-visualizing-tool>
+        </div>
       </div>
 
     </div>
@@ -49,7 +57,14 @@ import {VisualizingToolComponent} from "./visualizing-tool/visualizing-tool.comp
     }
   `
 })
-export class DataVisualizerComponent {
 
+
+export class DataVisualizerComponent {
+  selectedId:number = -5;
+  uDataService = new UserDataHandlerService();
+  clickHandler(){
+    this.uDataService.logUserData(this.selectedId);
+  }
+ // uDataService = UserDataHandlerService;
   protected readonly TimeSInkService = TimeSInkService;
 }

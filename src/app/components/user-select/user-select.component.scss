@@ -1,0 +1,32 @@
+app-button{
+  font-size: 0.8rem;
+}
+input{
+  width: 5rem;
+}
+
+.statsContainer{
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  row-gap: .4rem;
+  //align-items: flex-start;
+  text-align: left;
+  width: 60vw;
+  border: 5px solid red;
+}
+.gridKey{
+ // border: 5px solid red;
+}
+.gridValue{
+  //border: 5px solid #ffc42f;
+}
+.gridRow{
+  display: grid;
+  grid-template-columns: 20rem 10rem;
+  border:2px solid #4330cf;
+  width: 100%;
+  justify-content: left;
+
+}
