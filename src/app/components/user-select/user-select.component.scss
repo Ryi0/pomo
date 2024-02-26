@@ -1,3 +1,5 @@
+@use "../../../variables" as *;
+
 app-button{
   font-size: 0.8rem;
 }
@@ -14,7 +16,7 @@ input{
   //align-items: flex-start;
   text-align: left;
   width: 60vw;
-  border: 5px solid red;
+ // border: 5px solid red;
 }
 .gridKey{
  // border: 5px solid red;
@@ -25,7 +27,7 @@ input{
 .gridRow{
   display: grid;
   grid-template-columns: 20rem 10rem;
-  border:2px solid #4330cf;
+  border:1px solid $accent;
   width: 100%;
   justify-content: left;
 

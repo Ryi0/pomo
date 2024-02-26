@@ -39,4 +39,5 @@ export class UserDataHandlerService {
       }
       else UserDataHandlerService.localLoggedUsers.splice(this.getIndex(user.userStats._userId),1)
   }
+  public static Selection:User;
 }

@@ -43,12 +43,13 @@ import {NgForOf, NgIf} from "@angular/common";
         <ng-container *ngIf="selectedUser">
           <ng-container> <h2>User Stats : </h2>
             <ng-container *ngFor="let user of  UserDataHandlerService.localLoggedUsers">
-              <ng-container *ngFor="let kvPair of user.getKVPairs()">
+                <ng-container *ngFor="let kvPair of user.getKVPairs()">
                 <div class="gridRow">
                   <div class="gridKey">{{kvPair[0]}}</div>
                   <div class="gridValue">{{kvPair[1]}}</div>
+
                 </div>
-              </ng-container>
+                </ng-container>
             </ng-container>
           </ng-container>
 

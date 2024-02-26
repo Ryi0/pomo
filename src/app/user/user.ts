@@ -28,6 +28,7 @@ export class User {
     return message;
   }
   getKVPairs(){
-    return Object.entries(this.userStats)
+    const kv = Object.entries(this.userStats);
+    return kv
   }
 }
