@@ -1,4 +1,4 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, computed, OnInit, signal} from '@angular/core';
 import {ButtonComponent} from "../../components/items/button/button.component";
 import {TimeSInkService} from "../../time-sink.service";
 import {VisualizingToolComponent} from "./visualizing-tool/visualizing-tool.component";
@@ -17,16 +17,21 @@ import {NgIf} from "@angular/common";
     NgIf
   ],
   template: `
-
+    <h1>{{ TimeSInkService.FormattedString()}}</h1>
     <h1>{{CustomMessage()}}</h1>
-    <h1>Visualizer</h1>
+
     <ng-container *ngIf="usingCurrentUser()">
-    <h3>Welcome {{UserDataHandlerService.Selection.name}}</h3>
+<!--    <h3>Welcome {{UserDataHandlerService.Selection.name}}</h3>-->
     </ng-container>
     <div class="contBg">
-      <div class="buttonsContainerDV">
+
+
         <div class="container">
+          <div class="inputContainer">
+
           <input type="text" [(ngModel)]="selectedId">
+          </div>
+          <div class="buttonsContainerDV">
           <app-button type="funcBtn" tmpLbl="Change&nbsp;Mode"  (click)="UseChildOptions()" [isDisabled]="false"></app-button>
           <app-button type="funcBtn" (click)="clickHandler()" tmpLbl="Visualize" [isDisabled]="false"></app-button>
           <app-button type="funcBtn" (click)="addToSelection()" tmpLbl="Select+" [isDisabled]="false"></app-button>
@@ -36,12 +41,24 @@ import {NgIf} from "@angular/common";
           <app-visualizing-tool [inputUser]="userAsSig()" [usingChildData]="usingChildOptions()">
           </app-visualizing-tool>
         </div>
+          <app-button type="funcBtn" tmpLbl="Compare to Selection" [isDisabled]="false"></app-button>
       </div>
 
     </div>
-    <h1>{{ TimeSInkService.FormattedString()}}</h1>
+
+    <h1>Visualizer</h1>
   `,
   styles: `
+    .inputContainer{
+      input{
+        width: 80%;
+        text-align: center;
+        padding-right: 5rem;
+      }
+      width: 100%;
+
+
+    }
     .buttonsContainerDV {
       width: 100%;
       display: flex;
@@ -69,16 +86,24 @@ import {NgIf} from "@angular/common";
 
 
 export class DataVisualizerComponent {
-  CustomMessage = signal(" .");
+  CustomMessage =computed(() => {
+    if (this.usingCurrentUser()){
+      return "Welcome "+ UserDataHandlerService.Selection.name
+    }
+    if (!this.usingCurrentUser()){
+      return "Log in to compare your stats "
+    }
+    else return "";
+  });
   usingCurrentUser = signal(false);
   useCurrentUser(){
     if (UserDataHandlerService.Selection!=undefined) {
       this.usingCurrentUser.update(value => !value);
-      this.CustomMessage.set("Welcome "+UserDataHandlerService.Selection.name);
+    //  this.CustomMessage.set("Welcome "+UserDataHandlerService.Selection.name);
       this.clickHandler();
 
     }
-    else this.CustomMessage.set("There is no selected user.")
+   // else this.CustomMessage.set("There is no selected user.")
   }
 
   selectedId:number = 1;
@@ -90,8 +115,8 @@ export class DataVisualizerComponent {
   testUser = this.usingCurrentUser()?UserDataHandlerService.Selection: new User(this.selectedId, "Bob");
   userAsSig = signal(this.testUser);
   addToSelection(){
- this.uDataService.addUserToLocal(  this.testUser = new User(this.selectedId , "OtherUser"))
-    //console.log(UserDataHandlerService.localLoggedUsers)
+    this.uDataService.addUserToLocal(  this.testUser = new User(this.selectedId , "OtherUser"));
+    console.log(UserDataHandlerService.localLoggedUsers)
   }
   clickHandler(){
     this.testUser = new User(this.selectedId , "Bob");

@@ -16,6 +16,7 @@ import {UserDataHandlerService} from "../../../../../assets/data/user-data-handl
 export class RadarChartComponent implements OnInit {
   public initOptions:any;
   public options: any;
+  usingLocalData = false;
   UserDataSet: number[][] = UserDataHandlerService.getAllDataAsMap();
   DataMap: InputSignal<Map<any, any>> = input.required()
   DataCategories = computed(() => {
@@ -39,7 +40,7 @@ export class RadarChartComponent implements OnInit {
    //  console.log(Array.from(this.UserDataMap().map(value => Array.from(value.values()))))
    //  console.log(this.otherUsersData)
    //  console.log(this.UserDataMap())
-    return this.UserDataMap().map(value => Array.from(value.values()));
+   // return this.UserDataMap().map(value => Array.from(value.values()));
   }
   ngOnInit() {
     /*{TODO
@@ -58,13 +59,16 @@ export class RadarChartComponent implements OnInit {
       this.chartUpdater()
     });
   }
-
+  LocalData = UserDataHandlerService.getLocalDataAsMap();
   protected chartUpdater() {
+    if (!this.usingLocalData){
+      this.LocalData=UserDataHandlerService.getLocalDataAsMap();
+    }
     // let otherUsersData:User[];
     // UserDataHandlerService.localLoggedUsers.forEach(value => this.otherUsersData.push(value))
     //UserDataHandlerService.localLoggedUsers.forEach(value => this.otherUsersData.find(value1 => value1.getUserId()===value.getUserId())===undefined?this.otherUsersData.push(value):null)
    // console.log(this.SeriesData())
-   console.log(this.series())
+  // console.log(this.series())
     const lineStyle = {
       width: 1,
       opacity: 0.25,
@@ -76,9 +80,6 @@ export class RadarChartComponent implements OnInit {
       cap:'square',
     }
     this.options = {
-      dataset:{
-        source:this.UserDataSet
-      },
       // dataset:{
       //   source:this.series()
       // },
@@ -104,7 +105,7 @@ export class RadarChartComponent implements OnInit {
       },
       legend: {
 
-        data: ['User', 'OtherUsers']
+        data: ['User', 'OtherUsers','Selection']
       },
       radar: {
 
@@ -209,8 +210,17 @@ export class RadarChartComponent implements OnInit {
           areaStyle:{
             color: 'rgba(134,255,245,0.01)',
           }
+        },
+        {
+          name: 'Selection',
+          type: 'radar',
+          data: this.LocalData,
+          symbol: 'none',
+          lineStyle:lineStyle,
+          areaStyle:{
+            color: 'rgba(255,154,71,0.09)',
+          }
         }
-
 
       ],
 

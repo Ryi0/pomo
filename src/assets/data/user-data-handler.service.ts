@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {UserData} from "./user/user-data";
 import data from './finalDATA.json'
 import {User} from "./user/user";
@@ -13,6 +13,7 @@ export class UserDataHandlerService {
     return new User(id, name)
   }
   private static UserArray:User[] = [];
+  //public static LocalUsersDataMap = signal()
   public static getAllDataAsMap(){
     for (let i = 2; i < 50; i++) {
       this.UserArray.push(this.createUser(i, `User#${i}`))
@@ -22,6 +23,10 @@ export class UserDataHandlerService {
     // this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values())).forEach(value => numberArray.push(value));
     // return numberArray
    return this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values()));
+  }
+public static getLocalDataAsMap(){
+    console.log(this.localLoggedUsers.map(value => value.dataMap()).map(value => Array.from(value.values())))
+    return this.localLoggedUsers.map(value => value.dataMap()).map(value => Array.from(value.values()))
   }
   private getIndex(_id:number){
     // console.log(_id)
