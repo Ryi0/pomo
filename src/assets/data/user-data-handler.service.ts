@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {UserData} from "../../app/user/user-data";
+import {UserData} from "./user/user-data";
 import data from './finalDATA.json'
-import {User} from "../../app/user/user";
+import {User} from "./user/user";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,6 @@ export class UserDataHandlerService {
   }
   getDataFromUserId(userId:number){
     const _tmpId = this.getIndex(userId);
-    console.log(_tmpId);
     if (_tmpId>=0){
       return UserDataHandlerService._data[_tmpId];
     }

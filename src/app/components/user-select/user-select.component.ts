@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {ButtonComponent} from "../items/button/button.component";
 import {UserDataHandlerService} from "../../../assets/data/user-data-handler.service";
-import {User} from "../../user/user";
+import {User} from "../../../assets/data/user/user";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({

@@ -1,5 +1,5 @@
 import {UserData} from "./user-data";
-import {UserDataHandlerService} from "../../assets/data/user-data-handler.service";
+import {UserDataHandlerService} from "../user-data-handler.service";
 
 export class User {
   private accessor dataService = new UserDataHandlerService
@@ -22,9 +22,14 @@ export class User {
     this.name = name
   }
 
-
+  public getSessionRatio(){
+    return this.userStats.sessionsCompletedStartedRatio;
+  }
+  public getCyclesRatio(){
+    return this.userStats.cyclesCompletedStartedRatio;
+  }
   public dataMap(): Map<any, any> {
-    const map:Map<any, any> = new Map(this.getKVPairs());
+    const map:Map<any, any> = new Map((this.getKVPairs().slice(1, 8)));
     return map;
   }
   public toString() {

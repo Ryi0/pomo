@@ -1,3 +1,8 @@
 <!--<app-scatter></app-scatter>-->
-<div echarts [options]="chartOptions" class="chart"></div>
+<ng-container *ngIf="usingChildData(); else regularOptions">
+<app-radar-chart [DataMap]="UserDataMap()"></app-radar-chart>
+</ng-container>
+<ng-template #regularOptions>
+  <div echarts [options]="chartOptions" class="chart"></div>
+</ng-template>
 <!--<div echarts class="chart"></div>-->
