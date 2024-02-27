@@ -87,7 +87,14 @@ export class VisualizingToolComponent implements OnInit{
     console.log(this.SeriesData())
     const userDataAsMap: Map<any, any> = this.inputUser().dataMap();
     this.chartOptions = {
+      color:['#79FF8D','#171a1c','#eeeeee'],
       tooltip: {
+        backgroundColor: '#171a1c',
+        borderWidth:2,
+        borderColor: '#79FF8D',
+        textStyle:{
+          color: '#eeeeee'
+        },
         trigger: 'axis', // Show tooltip when hovering over data points
         axisPointer: {
           type: 'shadow' // Show tooltip shadow
