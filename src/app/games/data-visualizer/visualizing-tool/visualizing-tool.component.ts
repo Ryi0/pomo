@@ -4,6 +4,7 @@ import {NgxEchartsDirective} from "ngx-echarts";
 import {User} from "../../../../assets/data/user/user";
 import {NgIf} from "@angular/common";
 import {RadarChartComponent} from "./radar-chart/radar-chart.component";
+import {UserDataHandlerService} from "../../../../assets/data/user-data-handler.service";
 
 @Component({
   selector: 'app-visualizing-tool',
@@ -22,6 +23,10 @@ export class VisualizingToolComponent implements OnInit{
   inputUser = input.required<User>();
   chartOptions:any;
   chartOptionsSig = signal({});
+  UsersDatasMap = computed(()=> {
+    let tmp = UserDataHandlerService.localLoggedUsers.map(value => value.dataMap())
+    return UserDataHandlerService.localLoggedUsers
+  })
   UserDataMap = computed(() =>this.inputUser().dataMap());
   UserDataKVArray = computed( ()=>this.inputUser().getKVPairs());
   DataCategories = computed(() => {
@@ -73,8 +78,6 @@ export class VisualizingToolComponent implements OnInit{
     // })
   }
   /* {TODO :
-       1- remove the ratio values from the chart, place them elsewhere,
-       2- Remove user ID from the chart.\//
        3- Add comparator to compare current logged in user to other users in the database.
        }  */
   private chartUpdater(user:User){

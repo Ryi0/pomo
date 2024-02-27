@@ -12,6 +12,17 @@ export class UserDataHandlerService {
   public static createUser(id:number, name:string):User{
     return new User(id, name)
   }
+  private static UserArray:User[] = [];
+  public static getAllDataAsMap(){
+    for (let i = 2; i < 50; i++) {
+      this.UserArray.push(this.createUser(i, `User#${i}`))
+    }
+    // const numberArray:any = [];
+    //
+    // this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values())).forEach(value => numberArray.push(value));
+    // return numberArray
+   return this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values()));
+  }
   private getIndex(_id:number){
     // console.log(_id)
     // console.log(this._data.findIndex(user=>user._userId=== Number(_id)))

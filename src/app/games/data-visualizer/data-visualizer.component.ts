@@ -24,6 +24,7 @@ import {User} from "../../../assets/data/user/user";
           <input type="text" [(ngModel)]="selectedId">
           <app-button type="funcBtn" tmpLbl="Change&nbsp;Mode"  (click)="UseChildOptions()" [isDisabled]="false"></app-button>
           <app-button type="funcBtn" (click)="clickHandler()" tmpLbl="Visualize" [isDisabled]="false"></app-button>
+          <app-button type="funcBtn" (click)="addToSelection()" tmpLbl="Select+" [isDisabled]="false"></app-button>
         </div>
         <div class="toolContainer">
           <app-visualizing-tool [inputUser]="userAsSig()" [usingChildData]="usingChildOptions()">
@@ -62,6 +63,7 @@ import {User} from "../../../assets/data/user/user";
 
 
 export class DataVisualizerComponent {
+
   selectedId:number = 1;
   usingChildOptions = signal(false);
   UseChildOptions (){
@@ -70,6 +72,10 @@ export class DataVisualizerComponent {
   uDataService = new UserDataHandlerService();
   testUser = new User(this.selectedId, "Bob");
   userAsSig = signal(this.testUser);
+  addToSelection(){
+ this.uDataService.addUserToLocal(  this.testUser = new User(this.selectedId , "OtherUser"))
+    //console.log(UserDataHandlerService.localLoggedUsers)
+  }
   clickHandler(){
     this.testUser = new User(this.selectedId , "Bob");
     this.userAsSig.set(this.testUser);

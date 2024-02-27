@@ -1,1 +1,1 @@
-<div echarts [merge]="options" [options]="options" class="chart"></div>
+<div [autoResize]="false" (chartInit)="chartUpdater()" echarts [options]="options" class="chart"></div>

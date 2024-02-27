@@ -1,5 +1,5 @@
 <!--<app-scatter></app-scatter>-->
-<ng-container *ngIf="usingChildData(); else regularOptions">
+<ng-container *ngIf="!usingChildData(); else regularOptions">
 <app-radar-chart [DataMap]="UserDataMap()"></app-radar-chart>
 </ng-container>
 <ng-template #regularOptions>

@@ -2,6 +2,7 @@ import {Component, computed, effect, input, Input, InputSignal, OnInit, Signal, 
 import {User} from "../../../../../assets/data/user/user";
 import {NgxEchartsDirective} from "ngx-echarts";
 import {graphic} from "echarts";
+import {UserDataHandlerService} from "../../../../../assets/data/user-data-handler.service";
 
 @Component({
   selector: 'app-radar-chart',
@@ -13,40 +14,81 @@ import {graphic} from "echarts";
   styleUrl: './radar-chart.component.scss'
 })
 export class RadarChartComponent implements OnInit {
+  public initOptions:any;
   public options: any;
+  UserDataSet: number[][] = UserDataHandlerService.getAllDataAsMap();
   DataMap: InputSignal<Map<any, any>> = input.required()
   DataCategories = computed(() => {
     return Array.from(this.DataMap().keys());
   })
   SeriesData = computed(() => {
+//    console.log(this.DataMap().values())
     return Array.from(this.DataMap().values());
   })
+   UserDataMap = () => {
+    let tmp:any = [];
+   // console.log(this.otherUsersData.map(value => value.dataMap()));
+    // this.otherUsersData.forEach(value => {
+    //   tmp.push(value.dataMap().values())
+    //   console.log(tmp)
+    // })
 
+    return this.otherUsersData.map(value => value.dataMap());
+  };
+   series = () => {
+   //  console.log(Array.from(this.UserDataMap().map(value => Array.from(value.values()))))
+   //  console.log(this.otherUsersData)
+   //  console.log(this.UserDataMap())
+    return this.UserDataMap().map(value => Array.from(value.values()));
+  }
   ngOnInit() {
     /*{TODO
         1- figure out an algorithm to calculate maximum values on a case
         by case basis using a ratio between started cycles and started sessions
         }*/
   }
-
+  otherUsersData:User[];
   constructor() {
+    console.log(this.UserDataSet)
+   this.otherUsersData= [];
     effect(() => {
       console.log("RADAR EFFECT TRIGGERED, \n VALUES : ")
-      console.log(this.DataMap());
-      console.log(this.SeriesData());
+      //console.log(this.DataMap());
+     // console.log(this.SeriesData());
       this.chartUpdater()
     });
   }
 
-  private chartUpdater() {
-
+  protected chartUpdater() {
+    // let otherUsersData:User[];
+    // UserDataHandlerService.localLoggedUsers.forEach(value => this.otherUsersData.push(value))
+    //UserDataHandlerService.localLoggedUsers.forEach(value => this.otherUsersData.find(value1 => value1.getUserId()===value.getUserId())===undefined?this.otherUsersData.push(value):null)
+   // console.log(this.SeriesData())
+   console.log(this.series())
+    const lineStyle = {
+      width: 1,
+      opacity: 0.25,
+      join:'bevel'
+    }
+    const mainLineStyle = {
+      color:'#79FF8D',
+      join:'bevel',
+      cap:'square',
+    }
     this.options = {
-      color:['#79FF8D','#171a1c','#eeeeee'],
+      dataset:{
+        source:this.UserDataSet
+      },
+      // dataset:{
+      //   source:this.series()
+      // },
+     // backgroundColor: '#171a1c',
+      color:['#171a1c','#eeeeee','#171a1c','#eeeeee','#171a1c','#eeeeee'],
       title: {
         text: `User Data}`
       },
       animation: true,
-      animationEasing:'backInOut',
+      animationEasing:'circularInOut',
       animationDelayUpdate:100,
       animationEasingUpdate:'circularInOut',
       animationDurationUpdate :1000,
@@ -61,19 +103,11 @@ export class RadarChartComponent implements OnInit {
       }
       },
       legend: {
-        data: ['User']
+
+        data: ['User', 'OtherUsers']
       },
       radar: {
-       // symbol:'arrow',
-        //shape: 'polygon',
-        // name: {
-        //   textStyle: {
-        //     color: '#eeeeee',
-        //     backgroundColor: '#171a1c',
-        //     borderRadius: 3,
-        //     padding: [3, 5]
-        //   }
-        // },
+
 
         indicator: [
           {name: 'Started Cycles', max: 100},
@@ -84,51 +118,103 @@ export class RadarChartComponent implements OnInit {
           {name: 'Cycles Completed/Started Ratio', max: 1},
           {name: 'Sessions Completed/Started Ratio', max: 1}
         ],
-
+        splitNumber:5,
         radius: 150,
+        splitArea:{
+            areaStyle: {
+              color:['rgba(31,31,31,0.4)', 'rgba(87,98,94,0.26)']
+            },
+        },
+        splitLine:{
+          lineStyle:{
+            color:'#000000'
+          }
+        },
+        axisLine:{
+          lineStyle:{
+            color:'#000000'
+          }
+        },
         axisName: {
           color: '#fff',
           backgroundColor: '#171a1c',
           borderRadius: 3,
           padding: [3, 5]
-        }
+        },
+
+
       },
       series: [
         {
-        name: 'User Stats',
+        // name: 'User Stats',
         type: 'radar',
-
-          backgroundColor: '#171a1c',
-        // areaStyle: {normal: {}},
+        backgroundColor: '#171a1c',
+        // selectedMode:false,
+          // areaStyle: {normal: {}},
         data: [
-
           {
             backgroundColor: '#171a1c',
             value: this.SeriesData(),
             name: 'User',
+            symbol: 'none',
             areaStyle:{
-              color: new graphic.RadialGradient(0.1, 0.6, 1, [
+              backgroundColor: '#171a1c',
+              color: new graphic.RadialGradient(0.5, 0.5, 1, [
                 {
-                  color: 'rgba(38,38,38,0.1)',
+
+                  color: 'rgba(0,0,0,0)',
                   offset: 0
                 },
+
                 {
-                  color: 'rgb(121,255,141)',
+                  color: 'rgba(121,255,141,0.32)',
                   offset: 1
                 }
               ])
-            }
-          }
+            },
+            lineStyle:mainLineStyle,
+
+
+          },
+          // {
+          //   backgroundColor: '#ffffff',
+          //  value: this.series().entries(),
+          //   name: 'User2',
+          //   areaStyle:{
+          //     backgroundColor: '#ffffff',
+          //     color: new graphic.RadialGradient(0.5, 0.5, 1, [
+          //       {
+          //
+          //         color: 'rgb(41,45,36)',
+          //         offset: 0
+          //       },
+          //
+          //       {
+          //         color: 'rgb(255,121,188)',
+          //         offset: 1
+          //       }
+          //     ])
+          //   }
+          // }
         ],
-          animation: true,
-          animationEasing:'backInOut',
-          animationDelayUpdate:100,
-          animationEasingUpdate:'circularInOut',
-          animationDurationUpdate :1000,
-          symbol:'arrow',
+          z:10000,
+
+        },
+        {
+          name: 'OtherUsers',
+          type: 'radar',
+          data: this.UserDataSet,
+          symbol: 'none',
+          lineStyle:lineStyle,
+          areaStyle:{
+            color: 'rgba(134,255,245,0.01)',
+          }
         }
+
+
       ],
+
       // animation: true
-    };
+    } ;
   }
 }

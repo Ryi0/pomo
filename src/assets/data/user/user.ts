@@ -14,7 +14,9 @@ export class User {
     sessionsCompletedStartedRatio: 0
   }
 
-
+  getUserId(){
+    return this.userStats._userId;
+  }
   public readonly name: string;
 
   constructor(userId: number, name: string) {
