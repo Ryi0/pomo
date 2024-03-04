@@ -77,7 +77,7 @@ export class UserSelectComponent {
   private uDataService  = new UserDataHandlerService;
   // localLoggedUsers:Array<User> = new Array<User>();
   clickHandler(){
-    console.log(this.indexOfOfOption);
+    // console.log(this.indexOfOfOption);
     console.log(this.selectionId);
     console.log(typeof this.selectedUser)
     const u = new User(this.selectionId, this.inputName);

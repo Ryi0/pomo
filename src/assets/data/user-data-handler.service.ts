@@ -31,6 +31,7 @@ public static getLocalDataAsMap(){
   private getIndex(_id:number){
     // console.log(_id)
     // console.log(this._data.findIndex(user=>user._userId=== Number(_id)))
+    // console.log(UserDataHandlerService._data.findIndex(user=>user._userId===Number(_id)))
     return UserDataHandlerService._data.findIndex(user=>user._userId===Number(_id));
   }
   getDataFromUserId(userId:number){
@@ -48,14 +49,25 @@ public static getLocalDataAsMap(){
     console.log(userData)
   }
   public static removeUserFromLocal(user:User){
-   // this.localLoggedUsers.splice()
+    function getLocalIndex(_id:number){
+      console.log(UserDataHandlerService.localLoggedUsers.findIndex(user=>user.getUserId()===Number(_id)))
+      return UserDataHandlerService.localLoggedUsers.findIndex(user=>user.getUserId()===Number(_id))
+    }
+    const index = getLocalIndex(user.getUserId());
+    console.log(index)
+    if (index>=0){
+      this.localLoggedUsers.splice(index,1)
+    }
+  //  UserDataHandlerService.localLoggedUsers.splice(this._data.findIndex()
   }
   public static localLoggedUsers:Array<User> = new Array<User>();
   public addUserToLocal(user:User){
+
       if (UserDataHandlerService.localLoggedUsers.find(value => value.userStats._userId==user.userStats._userId)==undefined){
         UserDataHandlerService.localLoggedUsers.push(user)
       }
-      else UserDataHandlerService.localLoggedUsers.splice(this.getIndex(user.userStats._userId),1)
+      else UserDataHandlerService.removeUserFromLocal(user)
+    // console.log(this.getIndex(user.userStats._userId));
   }
   public static Selection:User;
 }
