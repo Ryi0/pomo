@@ -8,6 +8,9 @@ import {index} from "d3";
   providedIn: 'root'
 })
 export class UserDataHandlerService {
+  /*[TODO:{For the love of everything that is good, remove this hocus pocus shit. The entire functionality of the
+      code should not rely on a single console.log statement}]*/
+  static localUserCount = signal(0);
   static get Selection(): User {
 
     return this._Selection;
@@ -79,6 +82,7 @@ export class UserDataHandlerService {
     const index = getLocalIndex(user.getUserId());
     console.log(index)
     if (index >= 0) {
+      this.localUserCount.update(value => value-1)
       this.localLoggedUsers.splice(index, 1)
     }
     //  UserDataHandlerService.localLoggedUsers.splice(this._data.findIndex()
@@ -94,7 +98,7 @@ export class UserDataHandlerService {
       }
     }
     if (UserDataHandlerService.localLoggedUsers.find(value => value.userStats._userId == user.userStats._userId) == undefined) {
-
+      UserDataHandlerService.localUserCount.update(value => value+1)
       UserDataHandlerService.localLoggedUsers.push(user)
     } else UserDataHandlerService.removeUserFromLocal(user)
     // console.log(this.getIndex(user.userStats._userId));

@@ -117,8 +117,9 @@ export class DataVisualizerComponent {
   uDataService = new UserDataHandlerService();
   testUser = this.usingCurrentUser()?UserDataHandlerService.Selection: new User(this.selectedId, "Bob");
   userAsSig = signal(this.testUser);
+
   addToSelection(){
-    this.uDataService.addUserToLocal(  this.testUser = new User(this.selectedId , "OtherUser"));
+    this.uDataService.addUserToLocal(this.testUser = new User(this.selectedId , "OtherUser"));
     console.log(UserDataHandlerService.localLoggedUsers)
   }
   clickHandler(){

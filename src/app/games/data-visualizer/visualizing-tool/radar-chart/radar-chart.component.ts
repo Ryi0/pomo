@@ -55,7 +55,7 @@ export class RadarChartComponent implements OnInit {
    this.otherUsersData= [];
 
     effect(() => {
-
+      console.log(UserDataHandlerService.localUserCount())/*[TODO: {IM A BAD PERSON. DONT DELETE THIS C.LOG}]*/
       console.log("RADAR EFFECT TRIGGERED, \n VALUES : ")
       //console.log(this.DataMap());
      // console.log(this.SeriesData());
@@ -64,7 +64,9 @@ export class RadarChartComponent implements OnInit {
 
   }
   LocalData = UserDataHandlerService.getLocalDataAsMap();
+
   protected chartUpdater() {
+    console.log(UserDataHandlerService.localLoggedUsers)
     if (!this.usingLocalData){
       this.LocalData=UserDataHandlerService.getLocalDataAsMap();
     }
