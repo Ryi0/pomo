@@ -125,6 +125,7 @@ export class DataVisualizerComponent {
     this.testUser = new User(this.selectedId , "Bob");
     if (this.usingCurrentUser()){
       this.userAsSig.set(UserDataHandlerService.Selection)
+
     }
     else this.userAsSig.set(this.testUser);
     // console.log(this.testUser.dataMap())

@@ -77,9 +77,7 @@ export class VisualizingToolComponent implements OnInit{
     //
     // })
   }
-  /* {TODO :
-       3- Add comparator to compare current logged in user to other users in the database.
-       }  */
+
   private chartUpdater(user:User){
     if (this.usingChildData()){
 
