@@ -9,10 +9,14 @@ import {index} from "d3";
 })
 export class UserDataHandlerService {
   static get Selection(): User {
+
     return this._Selection;
   }
 
   static set Selection(value: User) {
+    if (this.Selection){
+    UserDataHandlerService.localLoggedUsers.push(this.Selection)
+    }
     this._Selection = value;
     UserDataHandlerService.removeUserFromLocal(value)
   }

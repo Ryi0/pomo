@@ -41,7 +41,7 @@ import {NgIf} from "@angular/common";
           <app-visualizing-tool [inputUser]="userAsSig()" [usingChildData]="usingChildOptions()">
           </app-visualizing-tool>
         </div>
-          <app-button type="funcBtn" tmpLbl="Compare to Selection" [isDisabled]="false"></app-button>
+<!--          <app-button type="funcBtn" tmpLbl="Compare to Selection" [isDisabled]="false"></app-button>-->
       </div>
 
     </div>
