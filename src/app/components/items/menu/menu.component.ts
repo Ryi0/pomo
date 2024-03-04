@@ -36,6 +36,7 @@ import {ButtonComponent} from "../button/button.component";
     ul{
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       list-style-type: none;
 
       padding: 0.2rem;

@@ -47,6 +47,9 @@ public static getLocalDataAsMap(){
     const userData = this.getDataFromUserId(userId);
     console.log(userData)
   }
+  public static removeUserFromLocal(user:User){
+   // this.localLoggedUsers.splice()
+  }
   public static localLoggedUsers:Array<User> = new Array<User>();
   public addUserToLocal(user:User){
       if (UserDataHandlerService.localLoggedUsers.find(value => value.userStats._userId==user.userStats._userId)==undefined){

@@ -62,6 +62,9 @@ import {NgIf} from "@angular/common";
     .buttonsContainerDV {
       width: 100%;
       display: flex;
+      flex-wrap: wrap-reverse;
+      gap: 1.5rem;
+      justify-content: center;
     }
 
     .toolContainer {
