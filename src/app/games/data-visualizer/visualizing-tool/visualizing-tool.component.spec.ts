@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { VisualizingToolComponent } from './visualizing-tool.component';
+import {VisualizingToolComponent} from './visualizing-tool.component';
 
 describe('VisualizingToolComponent', () => {
   let component: VisualizingToolComponent;
@@ -10,8 +10,8 @@ describe('VisualizingToolComponent', () => {
     await TestBed.configureTestingModule({
       imports: [VisualizingToolComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(VisualizingToolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,13 +1,14 @@
 @use "../../../variables" as *;
 
-app-button{
+app-button {
   font-size: 0.8rem;
 }
-input{
+
+input {
   width: 5rem;
 }
 
-.statsContainer{
+.statsContainer {
 
   display: flex;
   flex-wrap: wrap;
@@ -16,18 +17,21 @@ input{
   //align-items: flex-start;
   text-align: left;
   width: 60vw;
- // border: 5px solid red;
+  // border: 5px solid red;
 }
-.gridKey{
- // border: 5px solid red;
+
+.gridKey {
+  // border: 5px solid red;
 }
-.gridValue{
+
+.gridValue {
   //border: 5px solid #ffc42f;
 }
-.gridRow{
+
+.gridRow {
   display: grid;
   grid-template-columns: 20rem 10rem;
-  border:1px solid $accent;
+  border: 1px solid $accent;
   width: 100%;
   justify-content: left;
 

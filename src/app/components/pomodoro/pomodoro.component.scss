@@ -1,8 +1,10 @@
 @use "../../../variables" as *;
-app-button{
+
+app-button {
   font-size: .8rem;
 }
-.container{
+
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;

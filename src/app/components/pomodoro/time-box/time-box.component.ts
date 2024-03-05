@@ -1,11 +1,8 @@
-import {Component, computed, effect, input, Input, Output, signal} from '@angular/core';
-import {interval} from "rxjs";
+import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgClass, NgIf} from "@angular/common";
 import {ButtonComponent} from "../../items/button/button.component";
 import {TimeSInkService} from "../../../time-sink.service";
-import {ThisReceiver} from "@angular/compiler";
-import * as timers from "timers";
 
 @Component({
   selector: 'app-time-box',

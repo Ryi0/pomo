@@ -6,40 +6,26 @@ import {GameTile} from "./game-tile";
 })
 export class GameService {
 
-  get playerOneToPlay(): boolean {
-    return this._playerOneToPlay;
-  }
+  totalUncoveredTiles = computed(() => this.playerOneScore() + this.playerTwoScore());
+  protected cardList: GameTile[] = this.arrayOfTiles();
+  private _playerTwoScore = signal<number>(0);
 
-  set playerOneToPlay(value: boolean) {
-    this._playerOneToPlay = value;
-  }
-  incPlayer(){
-    if (!this._playerOneToPlay){
-      this._playerOneScore.update(value => value+=1);
-    }
-    else this._playerTwoScore.update(value => value+=1);
-  }
   // player1Won = computed(() => {
   //   if (this._playerOneScore()+this._playerTwoScore()>4){
   //     return this._playerOneScore()>this._playerTwoScore();
   //   }
   //   return
   // })
-
-private  _playerTwoScore = signal<number>(0);
-private  _playerOneScore = signal<number>(0);
-
-  playerOneScore = computed(()=>{
-    console.log("sum");
-    return this._playerOneScore();
-  })
-  playerTwoScore = computed(()=>{
+  playerTwoScore = computed(() => {
     console.log("sum");
     return this._playerTwoScore();
   })
-  private _playerOneToPlay:boolean = true;
-totalUncoveredTiles = computed(()=>this.playerOneScore()+this.playerTwoScore());
+  private _playerOneScore = signal<number>(0);
 
+  playerOneScore = computed(() => {
+    console.log("sum");
+    return this._playerOneScore();
+  })
 
   /**
    * Debating where to place cardSelector method.
@@ -51,23 +37,24 @@ totalUncoveredTiles = computed(()=>this.playerOneScore()+this.playerTwoScore());
    * For now, it will do.
    */
 
-  constructor() { }
-
-  private arrayOfTiles(){
-    const tiles1Tmp:GameTile[] = makeHalfArray();
-    const tiles2Tmp:GameTile[] = makeHalfArray();
-
-    function makeHalfArray(){
-      const arrayTmp = Array(6).fill(-1);
-      for (let i = 0; i < 6; i++) {
-        arrayTmp[i]=new GameTile(i);
-      }
-      return arrayTmp;
-    }
-
-    return tiles1Tmp.concat(tiles2Tmp);
+  constructor() {
   }
-  protected cardList:GameTile[] = this.arrayOfTiles();
+
+  private _playerOneToPlay: boolean = true;
+
+  get playerOneToPlay(): boolean {
+    return this._playerOneToPlay;
+  }
+
+  set playerOneToPlay(value: boolean) {
+    this._playerOneToPlay = value;
+  }
+
+  incPlayer() {
+    if (!this._playerOneToPlay) {
+      this._playerOneScore.update(value => value += 1);
+    } else this._playerTwoScore.update(value => value += 1);
+  }
 
   /**
    * This function could be slimmer but
@@ -76,22 +63,37 @@ totalUncoveredTiles = computed(()=>this.playerOneScore()+this.playerTwoScore());
    * @param id
    */
 
-  getCardById(id:number):GameTile|undefined{
-    const tmpCard = this.cardList.find(GameTile=>{
-     return  GameTile.uniqueId===id;
+  getCardById(id: number): GameTile | undefined {
+    const tmpCard = this.cardList.find(GameTile => {
+      return GameTile.uniqueId === id;
     })
-    if (tmpCard!=undefined){
+    if (tmpCard != undefined) {
       return tmpCard;
-    }
-    else return undefined
+    } else return undefined
   }
-  getAllCards(){
+
+  getAllCards() {
     return this.cardList;
   }
 
   resetPlayers() {
-   this._playerOneScore.set(0)
-   this._playerTwoScore.set(0);
-   this.playerOneToPlay = true;
+    this._playerOneScore.set(0)
+    this._playerTwoScore.set(0);
+    this.playerOneToPlay = true;
+  }
+
+  private arrayOfTiles() {
+    const tiles1Tmp: GameTile[] = makeHalfArray();
+    const tiles2Tmp: GameTile[] = makeHalfArray();
+
+    function makeHalfArray() {
+      const arrayTmp = Array(6).fill(-1);
+      for (let i = 0; i < 6; i++) {
+        arrayTmp[i] = new GameTile(i);
+      }
+      return arrayTmp;
+    }
+
+    return tiles1Tmp.concat(tiles2Tmp);
   }
 }

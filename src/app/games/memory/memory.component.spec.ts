@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MemoryComponent } from './memory.component';
+import {MemoryComponent} from './memory.component';
 
 describe('MemoryComponent', () => {
   let component: MemoryComponent;
@@ -10,8 +10,8 @@ describe('MemoryComponent', () => {
     await TestBed.configureTestingModule({
       imports: [MemoryComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(MemoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

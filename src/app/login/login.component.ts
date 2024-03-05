@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {UserSelectComponent} from "../components/user-select/user-select.component";
 
 @Component({

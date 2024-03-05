@@ -1,7 +1,6 @@
-import {Component, computed, HostListener, input, OnInit, Output, signal} from '@angular/core';
+import {Component, computed, HostListener, OnInit, Output, signal} from '@angular/core';
 import {NgClass, NgIf, NgStyle} from "@angular/common";
 import {TimeSInkService} from "../../time-sink.service";
-
 
 
 @Component({
@@ -39,17 +38,18 @@ import {TimeSInkService} from "../../time-sink.service";
 
   `
 })
-export class TimerComponent implements OnInit{
+export class TimerComponent implements OnInit {
 
- // timeIN = input<number>(0);
+  // timeIN = input<number>(0);
   @Output() timeOUT = 0;
-  protected readonly onscroll = onscroll;
   isSticky: boolean = false;
   scrollPosSig = signal(0);
   stickyTop: number = 0;
-  fixed = computed(()=>{
+  fixed = computed(() => {
 
   })
+  protected readonly onscroll = onscroll;
+  protected readonly TimeSInkService = TimeSInkService;
 
   @HostListener('window:scroll', [])
   handleScroll() {
@@ -58,10 +58,9 @@ export class TimerComponent implements OnInit{
     this.isSticky = scrollPosition >= 400;
     this.stickyTop = document.querySelector('header')!.offsetTop;
   }
+
   ngOnInit() {
 
   }
-
-  protected readonly TimeSInkService = TimeSInkService;
 }
 

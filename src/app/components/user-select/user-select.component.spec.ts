@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UserSelectComponent } from './user-select.component';
+import {UserSelectComponent} from './user-select.component';
 
 describe('UserSelectComponent', () => {
   let component: UserSelectComponent;
@@ -10,8 +10,8 @@ describe('UserSelectComponent', () => {
     await TestBed.configureTestingModule({
       imports: [UserSelectComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(UserSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

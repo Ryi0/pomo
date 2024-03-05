@@ -1,5 +1,6 @@
 @use "../../../../variables" as *;
-.topMenu{
+
+.topMenu {
   padding: 0;
   margin: 0;
   text-align: center;
@@ -8,23 +9,25 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color : $background;
+    background-color: $background;
     border: 2px solid $accent;
     border-top: 0;
     border-bottom: 0;
-    box-shadow: $baseInShadow ;
+    box-shadow: $baseInShadow;
     transition: 200ms;
     //border: 4px solid $accent;
     width: 100px;
   }
-  .tile:hover{
+
+  .tile:hover {
     background-color: $secondary2;
     color: $accent;
     cursor: pointer;
     box-shadow: $baseOutShadow;
     transition: 200ms;
   }
-  ul{
+
+  ul {
 
     display: inline-flex;
 
@@ -32,16 +35,16 @@
     list-style-type: none;
 
 
-
     padding: 0;
     margin: 0;
-    background:$middleGrad;
+    background: $middleGrad;
     border-radius: 50px 50px 50px 50px;
 
     border: 4px solid transparent;
     overflow: hidden;
   }
-  li{
+
+  li {
 
     background-color: $background;
     // border-radius: 50px 90px;
@@ -58,12 +61,14 @@
 
     width: 300px
   }
-  .p1{
+
+  .p1 {
 
     border: 0;
   }
-  .p1::after{
-    background:$p1Grad;
+
+  .p1::after {
+    background: $p1Grad;
     border-radius: 90px 10px 10px 10px;
     text-align: right;
     position: relative;
@@ -79,11 +84,13 @@
     white-space: nowrap;
     content: "Player 1";
   }
-  .p2{
+
+  .p2 {
     border: 0;
   }
-  .p2::after{
-    background:$p2Grad;
+
+  .p2::after {
+    background: $p2Grad;
     border-radius: 10px 90px 10px 10px;
     text-align: center;
     position: relative;
@@ -100,7 +107,8 @@
     content: "Player 2";
 
   }
-  .containerGame{
+
+  .containerGame {
     display: flex;
     justify-content: center;
     align-content: center;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DataVisualizerComponent } from './data-visualizer.component';
+import {DataVisualizerComponent} from './data-visualizer.component';
 
 describe('DataVisualizerComponent', () => {
   let component: DataVisualizerComponent;
@@ -10,8 +10,8 @@ describe('DataVisualizerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DataVisualizerComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DataVisualizerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

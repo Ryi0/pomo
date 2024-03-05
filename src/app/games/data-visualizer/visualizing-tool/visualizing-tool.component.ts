@@ -1,4 +1,4 @@
-import {Component, computed, effect, input, OnInit, signal, viewChild} from '@angular/core';
+import {Component, computed, effect, input, OnInit, signal} from '@angular/core';
 import {ScatterComponent} from "./scatter/scatter.component";
 import {NgxEchartsDirective} from "ngx-echarts";
 import {User} from "../../../../assets/data/user/user";
@@ -18,17 +18,17 @@ import {UserDataHandlerService} from "../../../../assets/data/user-data-handler.
   templateUrl: './visualizing-tool.component.html',
   styleUrl: './visualizing-tool.component.scss'
 })
-export class VisualizingToolComponent implements OnInit{
+export class VisualizingToolComponent implements OnInit {
   usingChildData = input(false);
   inputUser = input.required<User>();
-  chartOptions:any;
+  chartOptions: any;
   chartOptionsSig = signal({});
-  UsersDatasMap = computed(()=> {
-    let tmp = UserDataHandlerService.localLoggedUsers.map(value => value.dataMap())
+  UsersDatasMap = computed(() => {
+    const tmp = UserDataHandlerService.localLoggedUsers.map(value => value.dataMap())
     return UserDataHandlerService.localLoggedUsers
   })
-  UserDataMap = computed(() =>this.inputUser().dataMap());
-  UserDataKVArray = computed( ()=>this.inputUser().getKVPairs());
+  UserDataMap = computed(() => this.inputUser().dataMap());
+  UserDataKVArray = computed(() => this.inputUser().getKVPairs());
   DataCategories = computed(() => {
     return Array.from(this.UserDataMap().keys());
   })
@@ -42,9 +42,11 @@ export class VisualizingToolComponent implements OnInit{
       this.chartUpdater(this.inputUser())
     });
   }
-  UseChildOptions (){
 
-  };
+  UseChildOptions() {
+
+  }
+
   ngOnInit(): void {
 
 
@@ -78,22 +80,22 @@ export class VisualizingToolComponent implements OnInit{
     // })
   }
 
-  private chartUpdater(user:User){
-    if (this.usingChildData()){
+  private chartUpdater(user: User) {
+    if (this.usingChildData()) {
 
     }
-    console.log("NEW USER : "+user)
+    console.log("NEW USER : " + user)
     console.log(user)
     console.log(this.DataCategories())
     console.log(this.SeriesData())
     const userDataAsMap: Map<any, any> = this.inputUser().dataMap();
     this.chartOptions = {
-      color:['#79FF8D','#171a1c','#eeeeee'],
+      color: ['#79FF8D', '#171a1c', '#eeeeee'],
       tooltip: {
         backgroundColor: '#171a1c',
-        borderWidth:2,
+        borderWidth: 2,
         borderColor: '#79FF8D',
-        textStyle:{
+        textStyle: {
           color: '#eeeeee'
         },
         trigger: 'axis', // Show tooltip when hovering over data points

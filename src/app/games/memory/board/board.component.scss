@@ -1,4 +1,4 @@
-$size : 120px;
+$size: 120px;
 main {
 
   //align-items: center;
@@ -9,7 +9,8 @@ main {
 
 
 }
-.grid-container{
+
+.grid-container {
   align-items: center;
   align-content: center;
   display: grid;
@@ -19,8 +20,8 @@ main {
   margin: auto;
 }
 
-app-square{
- // border: 1px gray solid;
+app-square {
+  // border: 1px gray solid;
   height: $size;
 
 }

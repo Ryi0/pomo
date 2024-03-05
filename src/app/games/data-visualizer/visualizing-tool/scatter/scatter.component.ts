@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import data from '../../../../../assets/data/finalDATA.json'
 //import * as d3 from 'd3';
 
@@ -20,7 +20,6 @@ import data from '../../../../../assets/data/finalDATA.json'
 //   sessionsCompletedStartedRatio: 0.51
 
 
-
 @Component({
   selector: 'app-scatter',
   standalone: true,
@@ -28,20 +27,20 @@ import data from '../../../../../assets/data/finalDATA.json'
   templateUrl: './scatter.component.html',
   styleUrl: './scatter.component.scss'
 })
-export class ScatterComponent  {
+export class ScatterComponent {
   private readonly data = data;
   private _db = [];
   private rawData = [
-      {
-    "_userId": 1,
-    "startedCycles": 75.0,
-    "completedCycles": 32,
-    "sessionsCompleted": 107.0,
-    "sessionsStarted": 210,
-    "averageSessionDuration": 14,
-    "cyclesCompletedStartedRatio": 0.43,
-    "sessionsCompletedStartedRatio": 0.51
-  },
+    {
+      "_userId": 1,
+      "startedCycles": 75.0,
+      "completedCycles": 32,
+      "sessionsCompleted": 107.0,
+      "sessionsStarted": 210,
+      "averageSessionDuration": 14,
+      "cyclesCompletedStartedRatio": 0.43,
+      "sessionsCompletedStartedRatio": 0.51
+    },
     {
       "_userId": 2,
       "startedCycles": 34.0,
@@ -268,22 +267,19 @@ export class ScatterComponent  {
   //   this.createSvg();
   //   this.drawBars(this.rawData);
   // }
+  private svg: any;
+  private margin = 50;
+  private width = 750 - (this.margin * 2);
+  private height = 400 - (this.margin * 2);
 
   logData() {
     console.log(this.rawData)
   }
 
-
   private dataFunc() {
     this.data.forEach(value => {
     })
   }
-
-
-  private svg: any;
-  private margin = 50;
-  private width = 750 - (this.margin * 2);
-  private height = 400 - (this.margin * 2);
 
   // private createSvg() {
   //   this.svg = d3.select("figure#bar")
@@ -337,4 +333,4 @@ export class ScatterComponent  {
 //       .attr("height", (d: any) => this.height - y(d.cyclesCompletedStartedRatio))
 //       .attr("fill", "#d04a35");
 //   }
- }
+}
