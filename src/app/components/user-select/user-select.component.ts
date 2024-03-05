@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {ButtonComponent} from "../items/button/button.component";
 import {UserDataHandlerService} from "../../../assets/data/user-data-handler.service";
@@ -25,7 +25,7 @@ import {NgForOf, NgIf} from "@angular/common";
     </ng-container>
     <label for="userss">Select User:</label>
     <select [(ngModel)]="UserDataHandlerService.Selection" name="userss" id="userss">
-      <option  *ngFor="let user of  UserDataHandlerService.localLoggedUsers"
+      <option *ngFor="let user of  UserDataHandlerService.localLoggedUsers"
               [ngValue]="user">{{ user.toString() }}
 
       </option>
@@ -43,12 +43,12 @@ import {NgForOf, NgIf} from "@angular/common";
       <div class="statsContainer">
         <ng-container *ngIf="UserDataHandlerService.Selection!=undefined">
           <ng-container><h2>User Stats : </h2>
-                <ng-container *ngFor="let kvPair of UserDataHandlerService.Selection.getKVPairs()">
+            <ng-container *ngFor="let kvPair of UserDataHandlerService.Selection.getKVPairs()">
               <div class="gridRow">
                 <div class="gridKey">{{ kvPair[0] }}</div>
                 <div class="gridValue">{{ kvPair[1] }}</div>
               </div>
-                </ng-container>
+            </ng-container>
           </ng-container>
         </ng-container>
 
@@ -63,20 +63,23 @@ import {NgForOf, NgIf} from "@angular/common";
 export class UserSelectComponent {
 
   userAsObj!: User;
-  selectedUser: User|undefined;
-  getSelectedStats(user:User|undefined){
-    if (user!=undefined) {
-      console.log(user)
-      return user.userStats;
-    }
-    else return false
-  }
+  selectedUser: User | undefined;
   indexOfOfOption = -1
   selectionId = -1;
-  inputName : string = "";
-  private uDataService  = new UserDataHandlerService;
+  inputName: string = "";
+  protected readonly UserDataHandlerService = UserDataHandlerService;
+  protected readonly User = User;
+  private uDataService = new UserDataHandlerService;
+
+  getSelectedStats(user: User | undefined) {
+    if (user != undefined) {
+      console.log(user)
+      return user.userStats;
+    } else return false
+  }
+
   // localLoggedUsers:Array<User> = new Array<User>();
-  clickHandler(){
+  clickHandler() {
     // console.log(this.indexOfOfOption);
     console.log(this.selectionId);
     console.log(typeof this.selectedUser)
@@ -87,10 +90,7 @@ export class UserSelectComponent {
     console.log(UserDataHandlerService.localLoggedUsers)
   }
 
-displayStats(){
+  displayStats() {
 
-}
-
-  protected readonly UserDataHandlerService = UserDataHandlerService;
-  protected readonly User = User;
+  }
 }

@@ -6,15 +6,17 @@
 @mixin transition($properties, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
   -webkit-transition: $properties $duration $timing-function $delay;
 }
+
 @mixin changeAccent($new-color) {
   $accent: $new-color !global;
 }
+
 @mixin changeBG($new-color) {
   background-color: $new-color;
 }
 
-app-timer{
-  header{
+app-timer {
+  header {
     background-color: $primary;
     transition: 1s;
     height: 5vw;
@@ -26,16 +28,18 @@ app-timer{
 
   }
 }
+
 .sticky {
-  top:-15rem;
+  top: -15rem;
   margin-top: 15rem;
   position: fixed;
   z-index: 200;
   width: 100%;
   transition: margin-top 1s;
 }
-.notSticky{
- // margin-top: 4rem;
+
+.notSticky {
+  // margin-top: 4rem;
   top: -15rem;
   transition: 1s;
   position: fixed;
@@ -43,7 +47,7 @@ app-timer{
   width: 100%;
 }
 
-.spacer{
+.spacer {
   aspect-ratio: 1920/1080;
   width: 100%;
   background-repeat: no-repeat;
@@ -51,7 +55,7 @@ app-timer{
   background-size: cover;
 }
 
-.smallContainerPrim{
+.smallContainerPrim {
   background-color: $primary;
   color: $text;
   width: 100%;
@@ -59,10 +63,11 @@ app-timer{
   margin: 0;
 }
 
-.flip{
+.flip {
   transform: rotate(180deg);
 }
-.spacer1{
+
+.spacer1 {
   aspect-ratio: 960/540;
   width: 100%;
 
@@ -73,26 +78,30 @@ app-timer{
   //@include changeAccent(#e74c3c);
   //@include transition(all, 0.3s);
 }
-.spacer1:hover{
+
+.spacer1:hover {
   //@include changeAccent($secondary)
 }
-.pyramidGreen{
+
+.pyramidGreen {
   background-image: url("./background.svg");
 
 }
 
-.layer1{
+.layer1 {
   background-image: url("./layer1.svg");
 
 }
 
-.layer2{
+.layer2 {
   background-image: url("./layer2.svg");
 }
-.layer3{
+
+.layer3 {
   background-image: url("./layer3.svg");
 }
-.layer4{
+
+.layer4 {
   background-image: url("./layer4.svg");
 }
 
@@ -119,31 +128,36 @@ app-timer{
 //  color: #ffffff;
 //  text-shadow: 0 1px 0 #528ecc;
 //}
-text{
+text {
   font-family: "Source Code Pro", monospace;
   font-optical-sizing: auto;
   font-style: normal;
 }
-h1{
+
+h1 {
   font-family: "Code Light", serif;
   letter-spacing: 0.2rem;
 }
-app-header{
 
-  header{
+app-header {
+
+  header {
     top: 0;
     margin: 0;
     background-color: $background;
 
   }
-  hr{
+
+  hr {
     border: 2px solid $redGrey;
   }
 }
-app-button{
+
+app-button {
   height: auto;
-  .btn{
-  //box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.21);
+
+  .btn {
+    //box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.21);
     background-color: $accent;
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
@@ -163,25 +177,26 @@ app-button{
     background: $gradient;
     -webkit-background-clip: text;
     background-clip: text;
-    color:$text;
+    color: $text;
 
     transition: 0.25s;
   }
 
 
-  .btn:hover{
+  .btn:hover {
     user-select: none;
     cursor: pointer;
     //color: $background;
     background-color: $background;
     background-image: $gradient;
 
-    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 15px 11px rgba(0, 0, 0, 0.1);
     border-image: $gradient3;
     border-image-slice: 15 5%;
     transition: 0.124s;
   }
-  .btn:active{
+
+  .btn:active {
     color: $primary;
     background: $gradient;
     -webkit-background-clip: text;
@@ -193,7 +208,8 @@ app-button{
     -webkit-text-stroke-width: 0.15rem;
     -webkit-text-stroke-color: $accent;
   }
-  .btnActive{
+
+  .btnActive {
     // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
     // background: $gradient;
     //background-color: $accent;
@@ -210,24 +226,28 @@ app-button{
 
 
     // transition-delay: 100ms;
-  } .btnActive:hover{
-      // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
-      border-image: $gradient;
-      border-image-slice: 15 5%;
-      // background: $gradient;
-      //background-color: $accent;
-      //border-image: $mainBG2;
-      //border-image-slice: 15 5%;
-      // color:$background;
-      transition: 300ms;
-      color: $accent;
-      // transition-delay: 100ms;
-    }
-  .navButt{
+  }
+
+  .btnActive:hover {
+    // box-shadow: inset 0px 1px 53px 5px rgba(255,255,255,0.62);
+    border-image: $gradient;
+    border-image-slice: 15 5%;
+    // background: $gradient;
+    //background-color: $accent;
+    //border-image: $mainBG2;
+    //border-image-slice: 15 5%;
+    // color:$background;
+    transition: 300ms;
+    color: $accent;
+    // transition-delay: 100ms;
+  }
+
+  .navButt {
 
 
   }
-  .funkyButt{
+
+  .funkyButt {
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
     font-style: normal;
@@ -241,12 +261,12 @@ app-button{
     padding: 1.1em 1em;
     letter-spacing: 0.35rem;
     border: solid 4px transparent;
-  //  background-color: $accent;
+    //  background-color: $accent;
     border-image: $gradient;
     border-image-slice: 15 5%;
     background: $accent $mainBG2;
     //-webkit-background-clip: text;
-   // background-clip: text;
+    // background-clip: text;
     background: $gradient;
 
     -webkit-background-clip: text;
@@ -259,13 +279,14 @@ app-button{
     transition: 300ms 0ms;
 
   }
-  .funkyButt:hover{
+
+  .funkyButt:hover {
     background-image: $mainBG2;
-    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 15px 11px rgba(0, 0, 0, 0.1);
 
     border-image: $gradient2;
     border-image-slice: 15 20% 15;
-  //  color: $background;
+    //  color: $background;
 
     -webkit-background-clip: content;
     background-clip: revert;
@@ -274,8 +295,9 @@ app-button{
     -webkit-text-stroke-color: $primary;
     transition: 1100ms 0s;
   }
-  .funkyButt:active{
-    box-shadow:  0px 0px 15px 11px rgba(0,0,0,0.1);
+
+  .funkyButt:active {
+    box-shadow: 0px 0px 15px 11px rgba(0, 0, 0, 0.1);
     background-image: $gradient;
     border-image: $mainBG2;
     border-image-slice: 10 5%;
@@ -289,18 +311,19 @@ app-button{
 
   }
 
-.greyed{
-  -webkit-text-fill-color: unset;
-  -webkit-text-stroke-width: unset;
-  -webkit-text-stroke-color: unset;
-  background-image: unset;
-  background-color: $primary;
-  background-clip: unset;
-  color: $secondary2;
-  transition: all 300ms ease-in-out;
+  .greyed {
+    -webkit-text-fill-color: unset;
+    -webkit-text-stroke-width: unset;
+    -webkit-text-stroke-color: unset;
+    background-image: unset;
+    background-color: $primary;
+    background-clip: unset;
+    color: $secondary2;
+    transition: all 300ms ease-in-out;
 
-}
-  .greyed:hover{
+  }
+
+  .greyed:hover {
     //-webkit-text-fill-color: $primary;
     //-webkit-text-stroke-width: 0.15rem;
     //-webkit-text-stroke-color: $accent;
@@ -309,12 +332,13 @@ app-button{
     -webkit-text-fill-color: unset;
     -webkit-text-stroke-width: 0.05ch;
     -webkit-text-stroke-color: $blueGrey;
-   // background-image: $mainBG2;
+    // background-image: $mainBG2;
     background-color: $primary;
     color: black;
 
     transition: all 300ms ease-in-out;
   }
+
   .btn-grad {
 
   }
@@ -326,7 +350,7 @@ app-button{
   }
 }
 
-input{
+input {
   height: 2rem;
   user-select: none;
   font-size: 1.5rem;
@@ -342,19 +366,22 @@ input{
   cursor: pointer;
 
 }
-input:hover{
+
+input:hover {
   border-color: $text;
   background-color: $primary;
   color: $accent;
 }
-input:focus{
+
+input:focus {
   user-select: none;
   color: $text;
-  background-color:$primary;
+  background-color: $primary;
   outline: none;
   border: 2px solid $text;
 }
-input:disabled{
+
+input:disabled {
   user-select: none;
   color: $accent;
   border-color: $accent;
@@ -362,13 +389,14 @@ input:disabled{
 
 
 }
-input:disabled:hover{
+
+input:disabled:hover {
   color: $background;
   border-color: $background;
   user-select: none;
 }
 
-html{
+html {
   ::-webkit-scrollbar {
     width: 1.2vw;
   }
@@ -382,15 +410,15 @@ html{
   ::-webkit-scrollbar-thumb {
 
 
-    background:$gradient2;
+    background: $gradient2;
     border: .3ch solid transparent;
     background-clip: content-box;
     border-radius: 1em;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background:$gradient;
-    border:  .3ch solid transparent;
+    background: $gradient;
+    border: .3ch solid transparent;
     background-clip: content-box;
     border-radius: 1em;
 
@@ -409,9 +437,10 @@ html{
   background-position: center;
   background-size: cover;
 }
-body{
+
+body {
   overflow-x: hidden;
- // background-color: rgba(0, 0, 0, 0.42);
+  // background-color: rgba(0, 0, 0, 0.42);
   //mix-blend-mode:overlay;
   min-height: 99%;
   margin: 0;
@@ -424,7 +453,8 @@ body{
   text-align: center;
   justify-content: center;
 }
-app-shaper{
+
+app-shaper {
   height: 50%;
   margin: 0;
   display: flex;
@@ -435,7 +465,8 @@ app-shaper{
   //font-size: 2rem;
   width: 100vw;
 }
-app-home{
+
+app-home {
   height: 50%;
   margin: 0;
   display: flex;
@@ -445,7 +476,8 @@ app-home{
   flex-wrap: nowrap;
   //font-size: 2rem;
   width: 100vw;
-  section{
+
+  section {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -454,25 +486,29 @@ app-home{
     padding: 100px 20vw;
 
   }
-  section:hover{
+
+  section:hover {
 
   }
-.scale50{
-  scale: 50%;
+
+  .scale50 {
+    scale: 50%;
+  }
 }
-}
-app-time-box{
+
+app-time-box {
 
 }
-app-pomodoro{
+
+app-pomodoro {
   display: flex;
   justify-content: center;
 
 }
 
 
-.mainCont{
-  background-image: $mainBG ;
+.mainCont {
+  background-image: $mainBG;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -481,17 +517,18 @@ app-pomodoro{
   text-align: center;
   padding: 0.5rem;
   opacity: 100%;
- // mix-blend-mode: lighten;
+  // mix-blend-mode: lighten;
 }
-.contBg{
+
+.contBg {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 2rem;
   //background-color: $primary;
-  background-image: $mainBG ;
- //background-blend-mode: multiply;
-//  mix-blend-mode: difference;
+  background-image: $mainBG;
+  //background-blend-mode: multiply;
+  //  mix-blend-mode: difference;
   text-align: center;
   border-radius: 1rem;
   padding: 0.5rem;
@@ -499,7 +536,7 @@ app-pomodoro{
   // background-clip: text;
 }
 
-.container{
+.container {
   font-family: "Source Code Pro", monospace;
   font-optical-sizing: auto;
   font-style: normal;
@@ -521,16 +558,19 @@ app-pomodoro{
 
 
 }
-app-session-setup{
-  .container{
+
+app-session-setup {
+  .container {
 
   }
-  app-button{
 
-    .btn{
+  app-button {
+
+    .btn {
       padding: .5rem;
     }
-    .funkyButt{
+
+    .funkyButt {
       font-family: "Source Code Pro", sans-serif;
       transition: 275ms;
       color: $text;
@@ -540,12 +580,14 @@ app-session-setup{
       -webkit-text-stroke-width: unset;
       -webkit-text-stroke-color: unset;
     }
-    .funkyButt:hover{
+
+    .funkyButt:hover {
       border-image: $mainBG;
       border-image-slice: 15 20% 15;
       color: $accent;
     }
-    .funkyButt:active{
+
+    .funkyButt:active {
       background-image: $mainBG;
       color: $text;
       border-image: $darkerBG;
@@ -556,13 +598,13 @@ app-session-setup{
   font-size: .8rem;
 }
 
-.modeSelectorCont{
+.modeSelectorCont {
   width: fit-content;
   display: flex;
   justify-content: center;
   margin: 2rem;
   //background-color: $primary;
-  background-image: $mainBG2 ;
+  background-image: $mainBG2;
   //background-blend-mode: multiply;
   //mix-blend-mode: hue;
   text-align: center;
@@ -573,7 +615,7 @@ app-session-setup{
   margin: auto;
 }
 
-.mediumComp{
+.mediumComp {
   display: flex;
   flex-direction: column;
   align-items: center;

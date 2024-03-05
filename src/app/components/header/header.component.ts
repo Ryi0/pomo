@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavBarComponent} from "../items/nav-bar/nav-bar.component";
 import {TimerComponent} from "../timer/timer.component";
 

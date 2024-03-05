@@ -1,21 +1,20 @@
-
 <div class="containerGame">
-<div class="menuContainer">
-  <div class="topMenu">
-    <ul>
-      <li  class="p1" [innerHTML]= " p1Count()"></li>
-      <li class="tile" (click)="startGame()">Start</li>
-      <li class="tile" (click)="stopGame()">Stop</li>
-      <li class="p2" [innerHTML]=" p2Count()"></li>
-    </ul>
+  <div class="menuContainer">
+    <div class="topMenu">
+      <ul>
+        <li [innerHTML]=" p1Count()" class="p1"></li>
+        <li (click)="startGame()" class="tile">Start</li>
+        <li (click)="stopGame()" class="tile">Stop</li>
+        <li [innerHTML]=" p2Count()" class="p2"></li>
+      </ul>
+    </div>
   </div>
-</div>
 
 
   <app-board (sentMessageP1)="receiveDataP1($event)"
              (sentMessageP2)="receiveDataP2($event)"
+             [gameStartedSignalId]="gameStarted"
              [gameStarted]="gameStarted()"
-              [gameStartedSignalId]="gameStarted"
   ></app-board>
 
 </div>

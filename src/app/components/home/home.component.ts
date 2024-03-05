@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {PomodoroComponent} from "../pomodoro/pomodoro.component";
 import {RouterLink} from "@angular/router";
 import {MenuComponent} from "../items/menu/menu.component";
@@ -17,9 +17,9 @@ import {ButtonComponent} from "../items/button/button.component";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-    coolFunc(){
-      setTimeout(()=>{
+  coolFunc() {
+    setTimeout(() => {
 
-      })
-    }
+    })
+  }
 }

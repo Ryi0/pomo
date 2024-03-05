@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RadarChartComponent } from './radar-chart.component';
+import {RadarChartComponent} from './radar-chart.component';
 
 describe('RadarChartComponent', () => {
   let component: RadarChartComponent;
@@ -10,8 +10,8 @@ describe('RadarChartComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RadarChartComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(RadarChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

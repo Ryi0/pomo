@@ -1,22 +1,24 @@
 import {Tile} from "./tile";
 
-export class GameTile implements Tile{
+export class GameTile implements Tile {
   private static _id = 0;
   content: string;
   uniqueId: number;
-  selectedProp:boolean;
-  hidden:boolean;
-  isShuffled:boolean;
-  constructor(cardNum:number) {
-    this.hidden=false;
+  selectedProp: boolean;
+  hidden: boolean;
+  isShuffled: boolean;
+
+  constructor(cardNum: number) {
+    this.hidden = false;
     this.selectedProp = false;
-    this.content= String(cardNum);
-    this.uniqueId=GameTile._id;
+    this.content = String(cardNum);
+    this.uniqueId = GameTile._id;
     GameTile._id++;
-    this.isShuffled=false;
+    this.isShuffled = false;
   }
-toString(): string {
+
+  toString(): string {
     return this.content;
-}
+  }
 
 }

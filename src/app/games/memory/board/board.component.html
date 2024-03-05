@@ -10,17 +10,17 @@
 <!--<ng-template #elseBlock>Player Two to play</ng-template>-->
 <!--</div>-->
 
-  <div class=" grid-container" >
-    <ng-container  *ngFor="let tile of allTheTiles">
-<app-square
-  (click)="clickHandler(tile.uniqueId)"
-  [cardContent]="tile.toString()"
-  [id]="tile.uniqueId"
-  [squareUniqueId]="tile.uniqueId"
-  [isSelected]="tile.selectedProp"
-  [isHidden]="tile.hidden"
-  [altHover]="gameService.playerOneToPlay"
-  [paused]="!gameStarted"
-></app-square>
-    </ng-container>
-  </div>
+<div class=" grid-container">
+  <ng-container *ngFor="let tile of allTheTiles">
+    <app-square
+      (click)="clickHandler(tile.uniqueId)"
+      [altHover]="gameService.playerOneToPlay"
+      [cardContent]="tile.toString()"
+      [id]="tile.uniqueId"
+      [isHidden]="tile.hidden"
+      [isSelected]="tile.selectedProp"
+      [paused]="!gameStarted"
+      [squareUniqueId]="tile.uniqueId"
+    ></app-square>
+  </ng-container>
+</div>

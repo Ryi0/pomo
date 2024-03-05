@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TimerComponent } from './timer.component';
+import {TimerComponent} from './timer.component';
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -10,8 +10,8 @@ describe('TimerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [TimerComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TimerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

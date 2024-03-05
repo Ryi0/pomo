@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 

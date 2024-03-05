@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {GameComponent} from "./game/game.component";
 import {TimerComponent} from "../../components/timer/timer.component";
 import {TimeSInkService} from "../../time-sink.service";

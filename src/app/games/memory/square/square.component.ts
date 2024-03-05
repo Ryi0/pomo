@@ -1,4 +1,4 @@
-import {Component, input, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgClass, NgIf} from "@angular/common";
 
 
@@ -29,11 +29,11 @@ import {NgClass, NgIf} from "@angular/common";
 })
 
 export class SquareComponent {
-  @Input() cardContent:any;
-  @Input() squareUniqueId:number|undefined;
-  @Input() isSelected:boolean = false;
-  @Input() isHidden:boolean=false;
-  @Input() altHover:boolean = false;
-  @Input() paused:boolean=false;
-  @Input() isBeingShuffled:boolean=false
+  @Input() cardContent: any;
+  @Input() squareUniqueId: number | undefined;
+  @Input() isSelected: boolean = false;
+  @Input() isHidden: boolean = false;
+  @Input() altHover: boolean = false;
+  @Input() paused: boolean = false;
+  @Input() isBeingShuffled: boolean = false
 }

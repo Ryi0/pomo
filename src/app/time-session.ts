@@ -1,5 +1,5 @@
 export interface TimeSession {
-  workTimeDuration:number,
-  breakTimeDuration:number,
+  workTimeDuration: number,
+  breakTimeDuration: number,
 
 }

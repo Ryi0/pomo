@@ -7,8 +7,8 @@ $primary: #5fcbf3;
 $primaryV2: #c73535;
 $secondary: #333333;
 $accent: #ffc42f;
-$baseInShadow : inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0,0,0,0.19);
-$baseOutShadow : 0 12px 32px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+$baseInShadow: inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+$baseOutShadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 /**
 Gradients :
@@ -22,13 +22,13 @@ $radialSecondaryAccent: radial-gradient(#c73535, #ffc42f);
 /**
   Game gradients :
  */
-$p1Grad : linear-gradient($background, $background) padding-box,
-linear-gradient(to right, $primary, 70%,  $accent) border-box;
+$p1Grad: linear-gradient($background, $background) padding-box,
+linear-gradient(to right, $primary, 70%, $accent) border-box;
 
-$middleGrad : linear-gradient($background, $background) padding-box,
-linear-gradient(90deg, $primary 0%, $accent 50%, $primaryV2 100%) border-box ;
+$middleGrad: linear-gradient($background, $background) padding-box,
+linear-gradient(90deg, $primary 0%, $accent 50%, $primaryV2 100%) border-box;
 
-$p2Grad : linear-gradient($background, $background) padding-box,
+$p2Grad: linear-gradient($background, $background) padding-box,
 linear-gradient(to right, $accent, 30%, $primaryV2) border-box;
 
 $transp: rgba(13, 13, 150, 0);
@@ -44,9 +44,8 @@ $_radialPrimaryAccent: radial-gradient(#ffeed6, #00ff8c);
 $_radialSecondaryAccent: radial-gradient(#790c30, #00ff8c);
 
 
-
-app-game{
-  .menuContainer{
+app-game {
+  .menuContainer {
     //   border: 4px solid $accent;
     display: block;
     width: fit-content;
@@ -54,6 +53,7 @@ app-game{
     margin-right: auto;
 
   }
+
   //.topMenu{
   //
   //  padding: 0;
@@ -153,7 +153,7 @@ app-game{
   //
   //  }
   //}
-  .myHome{
+  .myHome {
     display: flex;
     justify-content: center;
     margin: 0;
@@ -177,20 +177,20 @@ app-game{
 }
 
 
-body{
+body {
   font-family: 'Roboto', sans-serif;
 
   color: $text;
   background-color: $background;
 }
 
-app-square{
+app-square {
 
-  .unFound{
+  .unFound {
 
   }
 
-  .item{
+  .item {
     font-family: 'Roboto', sans-serif;
     user-select: none;
     font-weight: lighter;
@@ -199,9 +199,7 @@ app-square{
   }
 
 
-
-
-  .notSelected{
+  .notSelected {
     border-radius: 15px;
 
     display: flex;
@@ -209,7 +207,7 @@ app-square{
     align-items: center;
 
     background-color: $secondary;
-    box-shadow: inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: $primary;
     border: 2px solid $background;
 
@@ -218,7 +216,8 @@ app-square{
     transition-delay: 1s;
     transition: 0.5s;
   }
-  .notSelected:hover{
+
+  .notSelected:hover {
     border-radius: 90px 35px 120px 40px;
     display: flex;
     justify-content: center;
@@ -226,26 +225,31 @@ app-square{
     color: $secondary;
 
     background-color: $primary;
-    border:  2px  solid $text;
+    border: 2px solid $text;
     transition-delay: 100ms;
     transition: 0.5s;
-    box-shadow:  0 12px 32px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 48px;
     cursor: pointer;
   }
-  .play1Turn{
+
+  .play1Turn {
     color: $primary;
   }
-  .play1Turn:hover{
+
+  .play1Turn:hover {
     background-color: $primary;
   }
-  .play2Turn{
+
+  .play2Turn {
     color: $primaryV2;
   }
-  .play2Turn:hover{
+
+  .play2Turn:hover {
     background-color: $primaryV2;
   }
-  .selectedItem{
+
+  .selectedItem {
     border-radius: 90px;
     display: flex;
     justify-content: center;
@@ -253,19 +257,21 @@ app-square{
     //color: $accent;
 
     background-color: $background;
-    border:  2px  solid $accent;
+    border: 2px solid $accent;
 
-    box-shadow:  0 12px 32px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 48px;
     cursor: pointer;
     transition: 0.3s;
   }
-  .selectedItem:hover{
+
+  .selectedItem:hover {
     background-color: $secondary;
     transition-delay: 1s;
     transition: 0.3s;
   }
-  .paused{
+
+  .paused {
     color: #ffffff;
     background-color: rgba(175, 175, 175, 0.64);
     overflow: hidden;
@@ -276,20 +282,22 @@ app-square{
     border-radius: 100%;
 
   }
-  .shuffled{
+
+  .shuffled {
     background-color: rgba(129, 80, 255, 0.18);
     transition: 100ms ease-out;
 
     border-radius: 100%;
   }
-  .isHidden{
+
+  .isHidden {
     font-size: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $background;
     color: $background;
-    border-color: $background ;
+    border-color: $background;
 
     transition: 1s;
   }

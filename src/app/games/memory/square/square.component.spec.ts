@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SquareComponent } from './square.component';
+import {SquareComponent} from './square.component';
 
 describe('SquareComponent', () => {
   let component: SquareComponent;
@@ -10,8 +10,8 @@ describe('SquareComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SquareComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(SquareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {TimeSInkService} from "../../../time-sink.service";
 import {ButtonComponent} from "../../items/button/button.component";
@@ -26,9 +26,9 @@ export class SessionSetupComponent {
   locked: boolean = false;
   workInputTime: number = 0;
 
-  setSession(){
-    TimeSInkService.sessionSetter(this.breakInputTime,this.workInputTime);
-   // TimeSInkService.TimerSetupFromSession();
+  setSession() {
+    TimeSInkService.sessionSetter(this.breakInputTime, this.workInputTime);
+    // TimeSInkService.TimerSetupFromSession();
   }
 
 

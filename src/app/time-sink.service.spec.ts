@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TimeSInkService } from './time-sink.service';
+import {TimeSInkService} from './time-sink.service';
 
 describe('TimeSInkService', () => {
   let service: TimeSInkService;
