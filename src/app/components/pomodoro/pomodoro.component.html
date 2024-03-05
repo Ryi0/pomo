@@ -2,8 +2,12 @@
   <div class="modeSelectorCont">
     <div class="mediumComp">
       <h1>Mode&nbsp;:&nbsp;{{ TimeSInkService.Mode() }}</h1>
-      <app-button (click)="TimeSInkService.changeMode()" [isDisabled]="false" tmpLbl="Change mode"
-                  type="funcBtn"></app-button>
+      <app-button
+        (click)="TimeSInkService.changeMode()"
+        [isDisabled]="false"
+        tmpLbl="Change mode"
+        type="funcBtn"
+      ></app-button>
     </div>
   </div>
 

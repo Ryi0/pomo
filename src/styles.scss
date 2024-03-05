@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @use "variables" as *;
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 
-@mixin transition($properties, $duration: 0.3s, $timing-function: ease, $delay: 0s) {
+@mixin transition(
+  $properties,
+  $duration: 0.3s,
+  $timing-function: ease,
+  $delay: 0s
+) {
   -webkit-transition: $properties $duration $timing-function $delay;
 }
 
@@ -25,7 +30,6 @@ app-timer {
     justify-content: center;
     text-align: center;
     transition: 1s;
-
   }
 }
 
@@ -85,12 +89,10 @@ app-timer {
 
 .pyramidGreen {
   background-image: url("./background.svg");
-
 }
 
 .layer1 {
   background-image: url("./layer1.svg");
-
 }
 
 .layer2 {
@@ -140,12 +142,10 @@ h1 {
 }
 
 app-header {
-
   header {
     top: 0;
     margin: 0;
     background-color: $background;
-
   }
 
   hr {
@@ -181,7 +181,6 @@ app-button {
 
     transition: 0.25s;
   }
-
 
   .btn:hover {
     user-select: none;
@@ -224,7 +223,6 @@ app-button {
     border-image-slice: 1;
     transition: 300ms;
 
-
     // transition-delay: 100ms;
   }
 
@@ -243,8 +241,6 @@ app-button {
   }
 
   .navButt {
-
-
   }
 
   .funkyButt {
@@ -277,7 +273,6 @@ app-button {
     -webkit-text-stroke-color: unset;
 
     transition: 300ms 0ms;
-
   }
 
   .funkyButt:hover {
@@ -308,7 +303,6 @@ app-button {
     -webkit-text-stroke-width: 0.15rem;
     -webkit-text-stroke-color: $primary;
     transition: 100ms;
-
   }
 
   .greyed {
@@ -320,7 +314,6 @@ app-button {
     background-clip: unset;
     color: $secondary2;
     transition: all 300ms ease-in-out;
-
   }
 
   .greyed:hover {
@@ -340,7 +333,6 @@ app-button {
   }
 
   .btn-grad {
-
   }
 
   .btn-grad:hover {
@@ -354,7 +346,7 @@ input {
   height: 2rem;
   user-select: none;
   font-size: 1.5rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   color: $text;
   background-color: transparent;
@@ -364,7 +356,6 @@ input {
   padding: 0 2rem;
   width: 2rem;
   cursor: pointer;
-
 }
 
 input:hover {
@@ -386,8 +377,6 @@ input:disabled {
   color: $accent;
   border-color: $accent;
   background-color: $primary;
-
-
 }
 
 input:disabled:hover {
@@ -404,21 +393,18 @@ html {
   ::-webkit-scrollbar-track {
     width: 1.2vw;
     background: $mainBG;
-
   }
 
   ::-webkit-scrollbar-thumb {
-
-
     background: $gradient2;
-    border: .3ch solid transparent;
+    border: 0.3ch solid transparent;
     background-clip: content-box;
     border-radius: 1em;
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: $gradient;
-    border: .3ch solid transparent;
+    border: 0.3ch solid transparent;
     background-clip: content-box;
     border-radius: 1em;
 
@@ -484,11 +470,9 @@ app-home {
     align-items: center;
     min-height: 100px;
     padding: 100px 20vw;
-
   }
 
   section:hover {
-
   }
 
   .scale50 {
@@ -497,15 +481,12 @@ app-home {
 }
 
 app-time-box {
-
 }
 
 app-pomodoro {
   display: flex;
   justify-content: center;
-
 }
-
 
 .mainCont {
   background-image: $mainBG;
@@ -551,23 +532,18 @@ app-pomodoro {
 
   // background-color: $primary;
 
-
   //background-image: $mainBG;
   // mix-blend-mode: darken;
   //background-blend-mode: hue;
-
-
 }
 
 app-session-setup {
   .container {
-
   }
 
   app-button {
-
     .btn {
-      padding: .5rem;
+      padding: 0.5rem;
     }
 
     .funkyButt {
@@ -595,7 +571,7 @@ app-session-setup {
     }
   }
 
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .modeSelectorCont {

@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {VisualizingToolComponent} from './visualizing-tool.component';
+import { VisualizingToolComponent } from './visualizing-tool.component';
 
 describe('VisualizingToolComponent', () => {
   let component: VisualizingToolComponent;
@@ -8,9 +8,8 @@ describe('VisualizingToolComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VisualizingToolComponent]
-    })
-      .compileComponents();
+      imports: [VisualizingToolComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VisualizingToolComponent);
     component = fixture.componentInstance;

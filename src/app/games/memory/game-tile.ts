@@ -1,4 +1,4 @@
-import {Tile} from "./tile";
+import { Tile } from './tile';
 
 export class GameTile implements Tile {
   private static _id = 0;
@@ -20,5 +20,4 @@ export class GameTile implements Tile {
   toString(): string {
     return this.content;
   }
-
 }

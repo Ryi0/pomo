@@ -1,46 +1,52 @@
-import {Component, computed, effect, input, InputSignal, OnInit} from '@angular/core';
-import {User} from "../../../../../assets/data/user/user";
-import {NgxEchartsDirective} from "ngx-echarts";
-import {graphic} from "echarts";
-import {UserDataHandlerService} from "../../../../../assets/data/user-data-handler.service";
+import {
+  Component,
+  computed,
+  effect,
+  input,
+  InputSignal,
+  OnInit,
+} from '@angular/core';
+import { User } from '../../../../../assets/data/user/user';
+import { NgxEchartsDirective } from 'ngx-echarts';
+import { graphic } from 'echarts';
+import { UserDataHandlerService } from '../../../../../assets/data/user-data-handler.service';
 
 @Component({
   selector: 'app-radar-chart',
   standalone: true,
-  imports: [
-    NgxEchartsDirective
-  ],
+  imports: [NgxEchartsDirective],
   templateUrl: './radar-chart.component.html',
-  styleUrl: './radar-chart.component.scss'
+  styleUrl: './radar-chart.component.scss',
 })
 export class RadarChartComponent implements OnInit {
   public initOptions: any;
   public options: any;
   usingLocalData = false;
   UserDataSet: number[][] = UserDataHandlerService.getAllDataAsMap();
-  DataMap: InputSignal<Map<any, any>> = input.required()
+  DataMap: InputSignal<Map<any, any>> = input.required();
   DataCategories = computed(() => {
     return Array.from(this.DataMap().keys());
-  })
+  });
   SeriesData = computed(() => {
-//    console.log(this.DataMap().values())
+    //    console.log(this.DataMap().values())
     return Array.from(this.DataMap().values());
-  })
+  });
   otherUsersData: User[];
   LocalData = UserDataHandlerService.getLocalDataAsMap();
 
   constructor() {
-    console.log(this.UserDataSet)
+    console.log(this.UserDataSet);
     this.otherUsersData = [];
 
     effect(() => {
-      console.log(UserDataHandlerService.localUserCount())/*[TODO: {IM A BAD PERSON. DONT DELETE THIS C.LOG}]*/
-      console.log("RADAR EFFECT TRIGGERED, \n VALUES : ")
+      console.log(
+        UserDataHandlerService.localUserCount(),
+      ); /*[TODO: {IM A BAD PERSON. DONT DELETE THIS C.LOG}]*/
+      console.log('RADAR EFFECT TRIGGERED, \n VALUES : ');
       //console.log(this.DataMap());
       // console.log(this.SeriesData());
-      this.chartUpdater()
+      this.chartUpdater();
     });
-
   }
 
   UserDataMap = () => {
@@ -51,7 +57,7 @@ export class RadarChartComponent implements OnInit {
     //   console.log(tmp)
     // })
 
-    return this.otherUsersData.map(value => value.dataMap());
+    return this.otherUsersData.map((value) => value.dataMap());
   };
 
   series = () => {
@@ -59,10 +65,10 @@ export class RadarChartComponent implements OnInit {
     //  console.log(this.otherUsersData)
     //  console.log(this.UserDataMap())
     // return this.UserDataMap().map(value => Array.from(value.values()));
-  }
+  };
 
   ngOnInit() {
-    this.initiator()
+    this.initiator();
     /*{TODO
        1- figure out an algorithm to calculate maximum values on a case
        by case basis using a ratio between started cycles and started sessions
@@ -70,7 +76,7 @@ export class RadarChartComponent implements OnInit {
   }
 
   protected chartUpdater() {
-    console.log(UserDataHandlerService.localLoggedUsers)
+    console.log(UserDataHandlerService.localLoggedUsers);
     if (!this.usingLocalData) {
       this.LocalData = UserDataHandlerService.getLocalDataAsMap();
     }
@@ -82,13 +88,13 @@ export class RadarChartComponent implements OnInit {
     const lineStyle = {
       width: 1,
       opacity: 0.25,
-      join: 'bevel'
-    }
+      join: 'bevel',
+    };
     const mainLineStyle = {
       color: '#79FF8D',
       join: 'bevel',
       cap: 'square',
-    }
+    };
     this.options = {
       // dataset:{
       //   source:this.series()
@@ -96,7 +102,7 @@ export class RadarChartComponent implements OnInit {
       // backgroundColor: '#171a1c',
       color: ['#171a1c', '#eeeeee', '#171a1c', '#eeeeee', '#171a1c', '#eeeeee'],
       title: {
-        text: `User Data}`
+        text: `User Data}`,
       },
       animation: true,
       animationEasing: 'circularInOut',
@@ -110,50 +116,45 @@ export class RadarChartComponent implements OnInit {
         borderWidth: 2,
         borderColor: '#79FF8D',
         textStyle: {
-          color: '#eeeeee'
-        }
+          color: '#eeeeee',
+        },
       },
       legend: {
-
-        data: ['User', 'OtherUsers', 'Selection']
+        data: ['User', 'OtherUsers', 'Selection'],
       },
       radar: {
-
-
         indicator: [
-          {name: 'Started Cycles', max: 100},
-          {name: 'Completed Cycles', max: 100},
-          {name: 'Sessions Completed', max: 300},
-          {name: 'Sessions Started', max: 300},
-          {name: 'Average Session Duration', max: 25},
-          {name: 'Cycles Completed/Started Ratio', max: 1},
-          {name: 'Sessions Completed/Started Ratio', max: 1}
+          { name: 'Started Cycles', max: 100 },
+          { name: 'Completed Cycles', max: 100 },
+          { name: 'Sessions Completed', max: 300 },
+          { name: 'Sessions Started', max: 300 },
+          { name: 'Average Session Duration', max: 25 },
+          { name: 'Cycles Completed/Started Ratio', max: 1 },
+          { name: 'Sessions Completed/Started Ratio', max: 1 },
         ],
         splitNumber: 5,
         radius: 150,
         splitArea: {
           areaStyle: {
-            color: ['rgba(31,31,31,0.4)', 'rgba(87,98,94,0.26)']
+            color: ['rgba(31,31,31,0.4)', 'rgba(87,98,94,0.26)'],
           },
         },
         splitLine: {
           lineStyle: {
-            color: '#000000'
-          }
+            color: '#000000',
+          },
         },
         axisLine: {
           lineStyle: {
-            color: '#000000'
-          }
+            color: '#000000',
+          },
         },
         axisName: {
           color: '#fff',
           backgroundColor: '#171a1c',
           borderRadius: 3,
-          padding: [3, 5]
+          padding: [3, 5],
         },
-
-
       },
       series: [
         {
@@ -172,24 +173,20 @@ export class RadarChartComponent implements OnInit {
                 backgroundColor: '#171a1c',
                 color: new graphic.RadialGradient(0.5, 0.5, 1, [
                   {
-
                     color: 'rgba(0,0,0,0)',
-                    offset: 0
+                    offset: 0,
                   },
 
                   {
                     color: 'rgba(121,255,141,0.32)',
-                    offset: 1
-                  }
-                ])
+                    offset: 1,
+                  },
+                ]),
               },
               lineStyle: mainLineStyle,
-
-
             },
           ],
           z: 10000,
-
         },
         {
           name: 'OtherUsers',
@@ -199,7 +196,7 @@ export class RadarChartComponent implements OnInit {
           lineStyle: lineStyle,
           areaStyle: {
             color: 'rgba(134,255,245,0.01)',
-          }
+          },
         },
         {
           name: 'Selection',
@@ -209,11 +206,9 @@ export class RadarChartComponent implements OnInit {
           lineStyle: lineStyle,
           areaStyle: {
             color: 'rgba(255,154,71,0.09)',
-          }
-        }
-
+          },
+        },
       ],
-
     };
   }
 
@@ -221,13 +216,13 @@ export class RadarChartComponent implements OnInit {
     const lineStyle = {
       width: 1,
       opacity: 0.25,
-      join: 'bevel'
-    }
+      join: 'bevel',
+    };
     const mainLineStyle = {
       color: '#79FF8D',
       join: 'bevel',
       cap: 'square',
-    }
+    };
     this.initOptions = {
       // dataset:{
       //   source:this.series()
@@ -235,7 +230,7 @@ export class RadarChartComponent implements OnInit {
       // backgroundColor: '#171a1c',
       color: ['#171a1c', '#eeeeee', '#171a1c', '#eeeeee', '#171a1c', '#eeeeee'],
       title: {
-        text: `User Data}`
+        text: `User Data}`,
       },
       animation: true,
       animationEasing: 'circularInOut',
@@ -249,50 +244,45 @@ export class RadarChartComponent implements OnInit {
         borderWidth: 2,
         borderColor: '#79FF8D',
         textStyle: {
-          color: '#eeeeee'
-        }
+          color: '#eeeeee',
+        },
       },
       legend: {
-
-        data: ['User', 'OtherUsers', 'Selection']
+        data: ['User', 'OtherUsers', 'Selection'],
       },
       radar: {
-
-
         indicator: [
-          {name: 'Started Cycles', max: 100},
-          {name: 'Completed Cycles', max: 100},
-          {name: 'Sessions Completed', max: 300},
-          {name: 'Sessions Started', max: 300},
-          {name: 'Average Session Duration', max: 25},
-          {name: 'Cycles Completed/Started Ratio', max: 1},
-          {name: 'Sessions Completed/Started Ratio', max: 1}
+          { name: 'Started Cycles', max: 100 },
+          { name: 'Completed Cycles', max: 100 },
+          { name: 'Sessions Completed', max: 300 },
+          { name: 'Sessions Started', max: 300 },
+          { name: 'Average Session Duration', max: 25 },
+          { name: 'Cycles Completed/Started Ratio', max: 1 },
+          { name: 'Sessions Completed/Started Ratio', max: 1 },
         ],
         splitNumber: 5,
         radius: 150,
         splitArea: {
           areaStyle: {
-            color: ['rgba(31,31,31,0.4)', 'rgba(87,98,94,0.26)']
+            color: ['rgba(31,31,31,0.4)', 'rgba(87,98,94,0.26)'],
           },
         },
         splitLine: {
           lineStyle: {
-            color: '#000000'
-          }
+            color: '#000000',
+          },
         },
         axisLine: {
           lineStyle: {
-            color: '#000000'
-          }
+            color: '#000000',
+          },
         },
         axisName: {
           color: '#fff',
           backgroundColor: '#171a1c',
           borderRadius: 3,
-          padding: [3, 5]
+          padding: [3, 5],
         },
-
-
       },
       series: [
         {
@@ -311,24 +301,20 @@ export class RadarChartComponent implements OnInit {
                 backgroundColor: '#171a1c',
                 color: new graphic.RadialGradient(0.5, 0.5, 1, [
                   {
-
                     color: 'rgba(0,0,0,0)',
-                    offset: 0
+                    offset: 0,
                   },
 
                   {
                     color: 'rgba(121,255,141,0.32)',
-                    offset: 1
-                  }
-                ])
+                    offset: 1,
+                  },
+                ]),
               },
               lineStyle: mainLineStyle,
-
-
             },
           ],
           z: 10000,
-
         },
         {
           name: 'OtherUsers',
@@ -338,7 +324,7 @@ export class RadarChartComponent implements OnInit {
           lineStyle: lineStyle,
           areaStyle: {
             color: 'rgba(134,255,245,0.01)',
-          }
+          },
         },
         {
           name: 'Selection',
@@ -348,12 +334,9 @@ export class RadarChartComponent implements OnInit {
           lineStyle: lineStyle,
           areaStyle: {
             color: 'rgba(255,154,71,0.09)',
-          }
-        }
-
+          },
+        },
       ],
-
     };
   }
-
 }

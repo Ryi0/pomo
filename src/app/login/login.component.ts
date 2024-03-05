@@ -1,15 +1,11 @@
-import {Component} from '@angular/core';
-import {UserSelectComponent} from "../components/user-select/user-select.component";
+import { Component } from '@angular/core';
+import { UserSelectComponent } from '../components/user-select/user-select.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    UserSelectComponent
-  ],
+  imports: [UserSelectComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent {
-
-}
+export class LoginComponent {}

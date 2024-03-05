@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ScatterComponent} from './scatter.component';
+import { ScatterComponent } from './scatter.component';
 
 describe('ScatterComponent', () => {
   let component: ScatterComponent;
@@ -8,9 +8,8 @@ describe('ScatterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScatterComponent]
-    })
-      .compileComponents();
+      imports: [ScatterComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ScatterComponent);
     component = fixture.componentInstance;

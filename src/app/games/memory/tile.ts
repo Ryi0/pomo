@@ -1,6 +1,6 @@
 export interface Tile {
-  uniqueId: number
+  uniqueId: number;
   content: string;
 
-  toString(): string
+  toString(): string;
 }

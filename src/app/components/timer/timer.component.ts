@@ -1,26 +1,26 @@
-import {Component, computed, HostListener, OnInit, Output, signal} from '@angular/core';
-import {NgClass, NgIf, NgStyle} from "@angular/common";
-import {TimeSInkService} from "../../time-sink.service";
-
+import {
+  Component,
+  computed,
+  HostListener,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
+import { NgClass, NgIf, NgStyle } from '@angular/common';
+import { TimeSInkService } from '../../time-sink.service';
 
 @Component({
   selector: 'app-timer',
   standalone: true,
-  imports: [
-    NgClass,
-    NgStyle,
-    NgIf
-  ],
+  imports: [NgClass, NgStyle, NgIf],
   template: `
     <div [style.margin-top.px]="0">
-<header [ngClass]="{'sticky':isSticky, 'notSticky':!isSticky}" >
-<!--  [ngStyle]="{'top.px':stickyTop}"-->
-  <div *ngIf="TimeSInkService.OnBreak()">Enjoy your break</div>
-    <p>
-    Time Left : &nbsp;
-    </p>
-  <p>{{TimeSInkService.FormattedString()}}</p>
-</header>
+      <header [ngClass]="{ sticky: isSticky, notSticky: !isSticky }">
+        <!--  [ngStyle]="{'top.px':stickyTop}"-->
+        <div *ngIf="TimeSInkService.OnBreak()">Enjoy your break</div>
+        <p>Time Left : &nbsp;</p>
+        <p>{{ TimeSInkService.FormattedString() }}</p>
+      </header>
     </div>
   `,
   styles: `
@@ -35,32 +35,29 @@ import {TimeSInkService} from "../../time-sink.service";
 
     /*  transition: 5s;*/
     /*}*/
-
-  `
+  `,
 })
 export class TimerComponent implements OnInit {
-
   // timeIN = input<number>(0);
   @Output() timeOUT = 0;
   isSticky: boolean = false;
   scrollPosSig = signal(0);
   stickyTop: number = 0;
-  fixed = computed(() => {
-
-  })
+  fixed = computed(() => {});
   protected readonly onscroll = onscroll;
   protected readonly TimeSInkService = TimeSInkService;
 
   @HostListener('window:scroll', [])
   handleScroll() {
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPosition =
+      window.scrollY ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
     this.scrollPosSig.set(scrollPosition);
     this.isSticky = scrollPosition >= 400;
     this.stickyTop = document.querySelector('header')!.offsetTop;
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 }
-

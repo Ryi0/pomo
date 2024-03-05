@@ -11,7 +11,7 @@ nav {
   // background-color: vars.$primary;
   //// margin: 1rem 4rem;
   // margin: 0;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 li {
@@ -30,8 +30,7 @@ li:hover {
 }
 
 ul {
-
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 0.2rem;
   top: 0;
   display: flex;
@@ -39,6 +38,6 @@ ul {
   position: relative;
   background-color: vars.$primary;
   // margin: 1rem 4rem;
-  margin: .4rem;
+  margin: 0.4rem;
   list-style-type: none;
 }

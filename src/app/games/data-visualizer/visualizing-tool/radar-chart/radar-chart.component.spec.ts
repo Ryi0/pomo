@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {RadarChartComponent} from './radar-chart.component';
+import { RadarChartComponent } from './radar-chart.component';
 
 describe('RadarChartComponent', () => {
   let component: RadarChartComponent;
@@ -8,9 +8,8 @@ describe('RadarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RadarChartComponent]
-    })
-      .compileComponents();
+      imports: [RadarChartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RadarChartComponent);
     component = fixture.componentInstance;

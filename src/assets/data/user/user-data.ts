@@ -7,5 +7,4 @@ export interface UserData {
   averageSessionDuration: number;
   cyclesCompletedStartedRatio: number;
   sessionsCompletedStartedRatio: number;
-
 }

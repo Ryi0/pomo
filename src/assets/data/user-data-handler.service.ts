@@ -1,10 +1,10 @@
-import {Injectable, signal} from '@angular/core';
-import {UserData} from "./user/user-data";
-import data from './finalDATA.json'
-import {User} from "./user/user";
+import { Injectable, signal } from '@angular/core';
+import { UserData } from './user/user-data';
+import data from './finalDATA.json';
+import { User } from './user/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserDataHandlerService {
   /*[TODO:{For the love of everything that is good, remove this hocus pocus shit. The entire functionality of the
@@ -18,50 +18,63 @@ export class UserDataHandlerService {
   private static _Selection: User;
 
   static get Selection(): User {
-
     return this._Selection;
   }
 
   static set Selection(value: User) {
     if (this.Selection) {
-      UserDataHandlerService.localLoggedUsers.push(this.Selection)
+      UserDataHandlerService.localLoggedUsers.push(this.Selection);
     }
     this._Selection = value;
-    UserDataHandlerService.removeUserFromLocal(value)
+    UserDataHandlerService.removeUserFromLocal(value);
   }
 
   public static createUser(id: number, name: string): User {
-    return new User(id, name)
+    return new User(id, name);
   }
 
   //public static LocalUsersDataMap = signal()
   public static getAllDataAsMap() {
     for (let i = 2; i < 50; i++) {
-      this.UserArray.push(this.createUser(i, `User#${i}`))
+      this.UserArray.push(this.createUser(i, `User#${i}`));
     }
     // const numberArray:any = [];
     //
     // this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values())).forEach(value => numberArray.push(value));
     // return numberArray
-    return this.UserArray.map(value => value.dataMap()).map(value => Array.from(value.values()));
+    return this.UserArray.map((value) => value.dataMap()).map((value) =>
+      Array.from(value.values()),
+    );
   }
 
   public static getLocalDataAsMap() {
-    console.log(this.localLoggedUsers.map(value => value.dataMap()).map(value => Array.from(value.values())))
-    return this.localLoggedUsers.map(value => value.dataMap()).map(value => Array.from(value.values()))
+    console.log(
+      this.localLoggedUsers
+        .map((value) => value.dataMap())
+        .map((value) => Array.from(value.values())),
+    );
+    return this.localLoggedUsers
+      .map((value) => value.dataMap())
+      .map((value) => Array.from(value.values()));
   }
 
   public static removeUserFromLocal(user: User) {
     function getLocalIndex(_id: number) {
-      console.log(UserDataHandlerService.localLoggedUsers.findIndex(user => user.getUserId() === Number(_id)))
-      return UserDataHandlerService.localLoggedUsers.findIndex(user => user.getUserId() === Number(_id))
+      console.log(
+        UserDataHandlerService.localLoggedUsers.findIndex(
+          (user) => user.getUserId() === Number(_id),
+        ),
+      );
+      return UserDataHandlerService.localLoggedUsers.findIndex(
+        (user) => user.getUserId() === Number(_id),
+      );
     }
 
     const index = getLocalIndex(user.getUserId());
-    console.log(index)
+    console.log(index);
     if (index >= 0) {
-      this.localUserCount.update(value => value - 1)
-      this.localLoggedUsers.splice(index, 1)
+      this.localUserCount.update((value) => value - 1);
+      this.localLoggedUsers.splice(index, 1);
     }
     //  UserDataHandlerService.localLoggedUsers.splice(this._data.findIndex()
   }
@@ -73,26 +86,30 @@ export class UserDataHandlerService {
     } else throw new Error();
   }
 
-  getDataFromUserIdUnsafe(userId: number) {
-
-  }
+  getDataFromUserIdUnsafe(userId: number) {}
 
   logUserData(userId: number) {
     const userData = this.getDataFromUserId(userId);
-    console.log(userData)
+    console.log(userData);
   }
 
   public addUserToLocal(user: User) {
     if (UserDataHandlerService.Selection != undefined) {
       if (user.getUserId() === UserDataHandlerService.Selection.getUserId()) {
-        console.log(`user to be : ${user.getUserId()} selected user : ${UserDataHandlerService.Selection.getUserId()}`)
+        console.log(
+          `user to be : ${user.getUserId()} selected user : ${UserDataHandlerService.Selection.getUserId()}`,
+        );
         return;
       }
     }
-    if (UserDataHandlerService.localLoggedUsers.find(value => value.userStats._userId == user.userStats._userId) == undefined) {
-      UserDataHandlerService.localUserCount.update(value => value + 1)
-      UserDataHandlerService.localLoggedUsers.push(user)
-    } else UserDataHandlerService.removeUserFromLocal(user)
+    if (
+      UserDataHandlerService.localLoggedUsers.find(
+        (value) => value.userStats._userId == user.userStats._userId,
+      ) == undefined
+    ) {
+      UserDataHandlerService.localUserCount.update((value) => value + 1);
+      UserDataHandlerService.localLoggedUsers.push(user);
+    } else UserDataHandlerService.removeUserFromLocal(user);
     // console.log(this.getIndex(user.userStats._userId));
   }
 
@@ -100,6 +117,8 @@ export class UserDataHandlerService {
     // console.log(_id)
     // console.log(this._data.findIndex(user=>user._userId=== Number(_id)))
     // console.log(UserDataHandlerService._data.findIndex(user=>user._userId===Number(_id)))
-    return UserDataHandlerService._data.findIndex(user => user._userId === Number(_id));
+    return UserDataHandlerService._data.findIndex(
+      (user) => user._userId === Number(_id),
+    );
   }
 }

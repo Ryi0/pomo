@@ -9,11 +9,10 @@ input {
 }
 
 .statsContainer {
-
   display: flex;
   flex-wrap: wrap;
   flex-flow: column;
-  row-gap: .4rem;
+  row-gap: 0.4rem;
   //align-items: flex-start;
   text-align: left;
   width: 60vw;
@@ -34,5 +33,4 @@ input {
   border: 1px solid $accent;
   width: 100%;
   justify-content: left;
-
 }

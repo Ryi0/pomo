@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ShaperComponent} from './shaper.component';
+import { ShaperComponent } from './shaper.component';
 
 describe('ShaperComponent', () => {
   let component: ShaperComponent;
@@ -8,9 +8,8 @@ describe('ShaperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShaperComponent]
-    })
-      .compileComponents();
+      imports: [ShaperComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShaperComponent);
     component = fixture.componentInstance;

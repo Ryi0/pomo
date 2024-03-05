@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {SessionSetupComponent} from './session-setup.component';
+import { SessionSetupComponent } from './session-setup.component';
 
 describe('SessionSetupComponent', () => {
   let component: SessionSetupComponent;
@@ -8,9 +8,8 @@ describe('SessionSetupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SessionSetupComponent]
-    })
-      .compileComponents();
+      imports: [SessionSetupComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SessionSetupComponent);
     component = fixture.componentInstance;

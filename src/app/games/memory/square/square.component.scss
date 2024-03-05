@@ -1,18 +1,15 @@
 @use "../../../../variables" as *;
 
-
 .unFound {
-
 }
 
 .item {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   user-select: none;
   font-weight: lighter;
   width: 100%;
   height: 100%;
 }
-
 
 .notSelected {
   border-radius: 15px;
@@ -22,7 +19,9 @@
   align-items: center;
 
   // background-color: $primary;
-  box-shadow: inset 0 0px 32px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    inset 0 0px 32px 0 rgba(0, 0, 0, 0.41),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: $text;
   border: 2px solid $background;
   background-image: $mainBG;
@@ -44,7 +43,9 @@
   border: 2px solid $text;
   transition-delay: 100ms;
   transition: 0.5s;
-  box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 12px 32px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: 48px;
   cursor: pointer;
 }
@@ -63,7 +64,6 @@
 }
 
 .play2Turn:hover {
-
   background-color: $wave3;
   color: $wave3;
 }
@@ -78,7 +78,9 @@
   background-color: $primary;
   border: 2px solid $background;
 
-  box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow:
+    0 12px 32px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: 48px;
   cursor: pointer;
   transition: 0.3s;
@@ -99,7 +101,6 @@
   transition: 400ms ease-in;
 
   border-radius: 100%;
-
 }
 
 .shuffled {
@@ -120,6 +121,3 @@
 
   transition: 1s;
 }
-
-
-

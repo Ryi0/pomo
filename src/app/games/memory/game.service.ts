@@ -1,12 +1,13 @@
-import {computed, Injectable, signal} from '@angular/core';
-import {GameTile} from "./game-tile";
+import { computed, Injectable, signal } from '@angular/core';
+import { GameTile } from './game-tile';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GameService {
-
-  totalUncoveredTiles = computed(() => this.playerOneScore() + this.playerTwoScore());
+  totalUncoveredTiles = computed(
+    () => this.playerOneScore() + this.playerTwoScore(),
+  );
   protected cardList: GameTile[] = this.arrayOfTiles();
   private _playerTwoScore = signal<number>(0);
 
@@ -17,15 +18,15 @@ export class GameService {
   //   return
   // })
   playerTwoScore = computed(() => {
-    console.log("sum");
+    console.log('sum');
     return this._playerTwoScore();
-  })
+  });
   private _playerOneScore = signal<number>(0);
 
   playerOneScore = computed(() => {
-    console.log("sum");
+    console.log('sum');
     return this._playerOneScore();
-  })
+  });
 
   /**
    * Debating where to place cardSelector method.
@@ -37,8 +38,7 @@ export class GameService {
    * For now, it will do.
    */
 
-  constructor() {
-  }
+  constructor() {}
 
   private _playerOneToPlay: boolean = true;
 
@@ -52,8 +52,8 @@ export class GameService {
 
   incPlayer() {
     if (!this._playerOneToPlay) {
-      this._playerOneScore.update(value => value += 1);
-    } else this._playerTwoScore.update(value => value += 1);
+      this._playerOneScore.update((value) => (value += 1));
+    } else this._playerTwoScore.update((value) => (value += 1));
   }
 
   /**
@@ -64,12 +64,12 @@ export class GameService {
    */
 
   getCardById(id: number): GameTile | undefined {
-    const tmpCard = this.cardList.find(GameTile => {
+    const tmpCard = this.cardList.find((GameTile) => {
       return GameTile.uniqueId === id;
-    })
+    });
     if (tmpCard != undefined) {
       return tmpCard;
-    } else return undefined
+    } else return undefined;
   }
 
   getAllCards() {
@@ -77,7 +77,7 @@ export class GameService {
   }
 
   resetPlayers() {
-    this._playerOneScore.set(0)
+    this._playerOneScore.set(0);
     this._playerTwoScore.set(0);
     this.playerOneToPlay = true;
   }

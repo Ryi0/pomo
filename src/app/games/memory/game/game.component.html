@@ -2,21 +2,20 @@
   <div class="menuContainer">
     <div class="topMenu">
       <ul>
-        <li [innerHTML]=" p1Count()" class="p1"></li>
+        <li [innerHTML]="p1Count()" class="p1"></li>
         <li (click)="startGame()" class="tile">Start</li>
         <li (click)="stopGame()" class="tile">Stop</li>
-        <li [innerHTML]=" p2Count()" class="p2"></li>
+        <li [innerHTML]="p2Count()" class="p2"></li>
       </ul>
     </div>
   </div>
 
-
-  <app-board (sentMessageP1)="receiveDataP1($event)"
-             (sentMessageP2)="receiveDataP2($event)"
-             [gameStartedSignalId]="gameStarted"
-             [gameStarted]="gameStarted()"
+  <app-board
+    (sentMessageP1)="receiveDataP1($event)"
+    (sentMessageP2)="receiveDataP2($event)"
+    [gameStartedSignalId]="gameStarted"
+    [gameStarted]="gameStarted()"
   ></app-board>
-
 </div>
 
 <!--  (player1)="playerTwoScore"-->
